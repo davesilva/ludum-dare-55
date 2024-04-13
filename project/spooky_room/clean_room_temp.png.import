@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/clean_room_temp.png-9b7b544a6233224d7a1220878454cec7.stex"
+path="res://.import/clean_room_temp.png-141c6a05cc5b4175f37746f6199cead8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://project/room/clean_room_temp.png"
-dest_files=[ "res://.import/clean_room_temp.png-9b7b544a6233224d7a1220878454cec7.stex" ]
+source_file="res://project/spooky_room/clean_room_temp.png"
+dest_files=[ "res://.import/clean_room_temp.png-141c6a05cc5b4175f37746f6199cead8.stex" ]
 
 [params]
 

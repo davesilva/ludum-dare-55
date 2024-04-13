@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name SpookyRoom
 
 # Declare member variables here. Examples:
 export var dirtiness := 0.0

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/messy_room_temp.png-5cbd45d978d043092961885c778ad449.stex"
+path="res://.import/messy_room_temp.png-62cc3e745ca6ca4886b84798b5a91f49.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://project/room/messy_room_temp.png"
-dest_files=[ "res://.import/messy_room_temp.png-5cbd45d978d043092961885c778ad449.stex" ]
+source_file="res://project/spooky_room/messy_room_temp.png"
+dest_files=[ "res://.import/messy_room_temp.png-62cc3e745ca6ca4886b84798b5a91f49.stex" ]
 
 [params]
 
