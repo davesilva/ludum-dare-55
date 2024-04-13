@@ -1,14 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://project/spooky_room/clean_room_temp.png" type="Texture" id=1]
 [ext_resource path="res://project/spooky_room/spooky_room.gd" type="Script" id=2]
 [ext_resource path="res://project/spooky_room/messy_room_temp.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-
-[sub_resource type="RectangleShape2D" id=2]
-
-[sub_resource type="ImageTexture" id=3]
 
 [sub_resource type="RectangleShape2D" id=4]
 
@@ -22,21 +18,14 @@ roomHeight = 350
 
 [node name="RoomArea2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomArea2D"]
+[node name="RoomCollisionShape2D" type="CollisionShape2D" parent="RoomArea2D"]
 shape = SubResource( 1 )
 
-[node name="Floor" type="Node2D" parent="."]
-
-[node name="RigidBody2D" type="RigidBody2D" parent="Floor"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/RigidBody2D"]
-shape = SubResource( 2 )
-
 [node name="Sprite" type="Sprite" parent="."]
-texture = SubResource( 3 )
+texture = ExtResource( 1 )
 centered = false
 
 [node name="GhostActiveArea2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GhostActiveArea2D"]
+[node name="GhostActiveAreaCollisionShape2D" type="CollisionShape2D" parent="GhostActiveArea2D"]
 shape = SubResource( 4 )

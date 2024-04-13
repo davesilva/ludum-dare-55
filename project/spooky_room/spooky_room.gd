@@ -2,6 +2,8 @@ extends Node2D
 class_name SpookyRoom
 
 
+# TODO: A COUPLE ROOMS NEED WALLS BUT MOST DON'T
+
 # TODO: make a resource(?) 
 export var cleanImage: Texture
 export var dirtyImage: Texture
@@ -14,6 +16,10 @@ export var dirtiness := 0.0
 var naughtyLevel := 0
 var niceLevel := 0
 enum ROOM_STATE {CLEAN, DIRTY, RUINED}
+onready var sprite = $Sprite
+onready var room_collision_shape_2d = $RoomArea2D/RoomCollisionShape2D
+onready var floor_collision_shape_2d = $Floor/RigidBody2D/FloorCollisionShape2D
+
 
 # Converts the int to the state (real return type is ROOM_STATE)
 func dirtinessToState(c: int) -> int:
@@ -26,11 +32,10 @@ func dirtinessToState(c: int) -> int:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Sprite.texture = cleanImage
-	$Sprite.scale.x = float(roomWidth)/$Sprite.texture.get_width()
-	$Sprite.scale.y = float(roomHeight)/$Sprite.texture.get_height()
-	$RoomArea2D/CollisionShape2D.shape.set_extents(Vector2(roomWidth, roomHeight))
-
+	sprite.texture = cleanImage
+	sprite.scale.x = float(roomWidth)/sprite.texture.get_width()
+	sprite.scale.y = float(roomHeight)/sprite.texture.get_height()
+	room_collision_shape_2d.shape.set_extents(Vector2(roomWidth, roomHeight))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -52,8 +57,8 @@ func _process(delta):
 
 	match dirtinessToState(dirtiness):
 		ROOM_STATE.CLEAN:
-			$Sprite.texture = cleanImage
+			sprite.texture = cleanImage
 		ROOM_STATE.DIRTY:
-			$Sprite.texture = dirtyImage
+			sprite.texture = dirtyImage
 		ROOM_STATE.RUINED:
-			$Sprite.texture = dirtyImage
+			sprite.texture = dirtyImage
