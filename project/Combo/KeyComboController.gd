@@ -16,9 +16,11 @@ var current_combo = []
 signal combo_completed(combo)
 
 func end_combo() -> void:
+	timer.stop()
 	combo_running = false
 	combo_h_box_container.clear_keys()
 	emit_signal("combo_completed", current_combo)
+	current_combo = []
 
 func generate_combo_sequence() -> Array:
 	var arr = []
@@ -36,10 +38,5 @@ func _input(event):
 		current_combo.append(event.scancode)
 		combo_h_box_container.add_key(event.scancode)
 		
-		
-	
-	
-	
-
 func _on_Timer_timeout():
 	end_combo()

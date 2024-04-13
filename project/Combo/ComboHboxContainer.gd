@@ -9,7 +9,7 @@ func add_key(key) -> void:
 		KEY_DOWN: print_key = "DOWN"
 		KEY_LEFT: print_key = "LEFT"
 		KEY_RIGHT: print_key = "RIGHT"
-	
+		_: print_key = key
 	var name_label = Label.new()
 	name_label.text = print_key
 	add_child(name_label)
