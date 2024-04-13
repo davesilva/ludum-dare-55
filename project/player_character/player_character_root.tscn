@@ -22,7 +22,6 @@ shape = SubResource( 1 )
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource( 5 )
-gravity = 25000.0
 speed_calculator_path = NodePath("SpeedController")
 direction_calculator_path = NodePath("WASD")
 

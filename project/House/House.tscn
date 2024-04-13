@@ -11,4 +11,4 @@
 position = Vector2( 500, 0 )
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 2 )]
-position = Vector2( 51, -41 )
+position = Vector2( 88, 245 )
