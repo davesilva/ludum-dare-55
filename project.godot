@@ -105,15 +105,14 @@ _global_script_classes=[ {
 "path": "res://addons/sequencers/float/float_sequencer.gd"
 }, {
 "base": "Node2D",
-<<<<<<< Updated upstream
 "class": "Ghost",
 "language": "GDScript",
 "path": "res://project/Ghost/Ghost.gd"
-=======
+}, {
+"base": "Node2D",
 "class": "GhostSummonerComponent",
 "language": "GDScript",
 "path": "res://project/GhostSummoning/GhostSummonerComponent.gd"
->>>>>>> Stashed changes
 }, {
 "base": "ClickableSprite",
 "class": "GreenSprite",
@@ -300,11 +299,8 @@ _global_script_class_icons={
 "EventSubscription": "",
 "FeedbackRunner": "",
 "FloatSequencer": "",
-<<<<<<< Updated upstream
 "Ghost": "",
-=======
 "GhostSummonerComponent": "",
->>>>>>> Stashed changes
 "GreenSprite": "",
 "InlineTimer": "",
 "IntSequencer": "",
@@ -353,7 +349,7 @@ PresentationServices="*res://addons/presentation/presentation_services.tscn"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/clickable_area_2d/plugin.cfg", "res://addons/look_at/plugin.cfg", "res://addons/mouse_listener/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/clickable_area_2d/plugin.cfg" )
 
 [gui]
 
