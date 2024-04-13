@@ -35,7 +35,7 @@ func _ready():
 	sprite.texture = cleanImage
 	sprite.scale.x = float(roomWidth)/sprite.texture.get_width()
 	sprite.scale.y = float(roomHeight)/sprite.texture.get_height()
-	room_collision_shape_2d.shape.set_extents(Vector2(roomWidth, roomHeight))
+	# room_collision_shape_2d.shape.set_extents(Vector2(roomWidth, roomHeight))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

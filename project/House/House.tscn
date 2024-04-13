@@ -1,14 +1,29 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://project/spooky_room/spooky_room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://project/player_character/player_character_root.tscn" type="PackedScene" id=2]
+[ext_resource path="res://project/spooky_room/summoning_room.tscn" type="PackedScene" id=3]
+[ext_resource path="res://project/spooky_room/clean_room_temp.png" type="Texture" id=4]
+[ext_resource path="res://project/spooky_room/messy_room_temp.png" type="Texture" id=5]
 
 [node name="House" type="Node2D"]
 
 [node name="Bedroom" parent="." instance=ExtResource( 1 )]
+position = Vector2( 250, 175 )
 
 [node name="Kitchen" parent="." instance=ExtResource( 1 )]
-position = Vector2( 500, 0 )
+position = Vector2( 750, 175 )
+
+[node name="SummoningRoom" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1250, 175 )
+cleanImage = ExtResource( 4 )
+dirtyImage = ExtResource( 5 )
+roomWidth = 500
+roomHeight = 350
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 2 )]
-position = Vector2( 88, 245 )
+position = Vector2( 250, 245 )
+
+[editable path="Bedroom"]
+[editable path="Kitchen"]
+[editable path="SummoningRoom"]

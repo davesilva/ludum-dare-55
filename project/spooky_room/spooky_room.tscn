@@ -5,6 +5,7 @@
 [ext_resource path="res://project/spooky_room/messy_room_temp.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 250, 175 )
 
 [sub_resource type="RectangleShape2D" id=4]
 
@@ -23,7 +24,6 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-centered = false
 
 [node name="GhostActiveArea2D" type="Area2D" parent="."]
 

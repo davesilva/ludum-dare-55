@@ -9,8 +9,8 @@ export(float) var timer_length = 2.0
 export(Array) var key_pool = [KEY_LEFT, KEY_UP, KEY_DOWN, KEY_RIGHT]
 
 
-var comboing_enabled = true
-var combo_running = true
+var comboing_enabled = false
+var combo_running = false
 var current_combo = []
 
 signal combo_completed(combo)
