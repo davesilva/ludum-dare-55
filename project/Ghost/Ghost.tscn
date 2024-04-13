@@ -3,7 +3,7 @@
 [ext_resource path="res://project/Ghost/ghost.png" type="Texture" id=1]
 [ext_resource path="res://project/Ghost/Ghost.gd" type="Script" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="Ghost" type="Node2D"]
 script = ExtResource( 2 )
 movement_speed = 3.0
 
