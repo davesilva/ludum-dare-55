@@ -7,13 +7,13 @@ export (float) var chore_speed = 1
 
 var selected = false
 
-var destination: Chamber
+var destination: SpookyRoom
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
-func _on_send_to_location(destination: Chamber):
+func _on_send_to_location(destination: SpookyRoom):
 	if !self.selected:
 		return
 

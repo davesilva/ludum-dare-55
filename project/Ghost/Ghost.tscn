@@ -5,9 +5,7 @@
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
-mood = null
 movement_speed = 3.0
-chore_speed = null
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
