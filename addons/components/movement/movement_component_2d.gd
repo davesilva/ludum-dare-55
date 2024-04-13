@@ -6,6 +6,7 @@ class_name MovementComponent2D
 
 signal velocity_changed(velocity)
 
+export (float) var gravity = 0.0
 export (NodePath) var speed_calculator_path
 export (NodePath) var direction_calculator_path
 
@@ -49,8 +50,11 @@ func _physics_process(delta):
 		
 	else:
 		velocity = next_direction * top_speed
-
-	var collision_info = target.move_and_collide(velocity * delta)
+	
+	velocity.y += gravity * delta
+	# move and slide option, with floor 
+	velocity = target.move_and_slide(velocity, Vector2(0, -1))
+#	var collision_info = target.move_and_collide(velocity * delta)
 
 
 func hard_stop():
