@@ -2,42 +2,56 @@ extends Node2D
 
 
 # Declare member variables here. Examples:
-export var cleanliness := 0
-export var cleanImage: String
-export var dirtyImage: String
-var cleanImageTexture: StreamTexture
-var dirtyImageTexture: StreamTexture
+export var dirtiness := 0.0
+# TODO: make a resource(?) 
+export var cleanImage: Texture
+export var dirtyImage: Texture
+export var roomWidth: int
+export var roomHeight: int
+export var processSpeedInSeconds: int = 5
 var naughtyLevel := 0
 var niceLevel := 0
 enum ROOM_STATE {CLEAN, DIRTY, RUINED}
 
 # Converts the int to the state (real return type is ROOM_STATE)
-func cleanlinessToState(c: int) -> int:
-	if c < 50:
+func dirtinessToState(c: int) -> int:
+	if c < processSpeedInSeconds/2.0:
 		return ROOM_STATE.CLEAN
-	elif c < 100:
+	elif c < processSpeedInSeconds:
 		return ROOM_STATE.DIRTY
 	else:
 		return ROOM_STATE.RUINED
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	cleanImageTexture = load(cleanImage)
-	dirtyImageTexture = load(dirtyImage)
+	$Sprite.texture = cleanImage
+	$Sprite.scale.x = float(roomWidth)/$Sprite.texture.get_width()
+	$Sprite.scale.y = float(roomHeight)/$Sprite.texture.get_height()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# TODO: Remove this
-	if Input.is_action_pressed("ui_up") and cleanliness < 100:
-		cleanliness += 1
-	elif Input.is_action_pressed("ui_down") and cleanliness > 0:
-		cleanliness -= 1
+	if Input.is_action_pressed("ui_up") and dirtiness > 0:
+		niceLevel = 1
+		naughtyLevel = 0
+	elif Input.is_action_pressed("ui_down") and dirtiness < processSpeedInSeconds:
+		niceLevel = 0
+		naughtyLevel = -1
 
-	match cleanlinessToState(cleanliness):
+	var progress = (delta*((-1)*(niceLevel+naughtyLevel)))
+	dirtiness += progress
+
+
+	if dirtiness > processSpeedInSeconds:
+		dirtiness = processSpeedInSeconds
+	elif dirtiness < 0:
+		dirtiness = 0
+
+	match dirtinessToState(dirtiness):
 		ROOM_STATE.CLEAN:
-			$Sprite.texture = cleanImageTexture
+			$Sprite.texture = cleanImage
 		ROOM_STATE.DIRTY:
-			$Sprite.texture = dirtyImageTexture
+			$Sprite.texture = dirtyImage
 		ROOM_STATE.RUINED:
-			$Sprite.texture = dirtyImageTexture
+			$Sprite.texture = dirtyImage
