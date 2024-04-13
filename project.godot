@@ -147,7 +147,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "PlayerCharacter",
 "language": "GDScript",
-"path": "res://player_character.gd"
+"path": "res://project/player-character/player_character.gd"
 }, {
 "base": "BaseTweenTransformFeedback2D",
 "class": "PositionFeedback2D",
@@ -223,11 +223,6 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://addons/states/state_machine.gd"
-}, {
-"base": "Node2D",
-"class": "TestDoor",
-"language": "GDScript",
-"path": "res://project/tests/test_door.gd"
 }, {
 "base": "BoolSequencer",
 "class": "ToggleSequencer",
@@ -318,7 +313,6 @@ _global_script_class_icons={
 "Spinner": "",
 "State": "",
 "StateMachine": "",
-"TestDoor": "",
 "ToggleSequencer": "",
 "TweenFeedback": "",
 "TweenFeedback2D": "",

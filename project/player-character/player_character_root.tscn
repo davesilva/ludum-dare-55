@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://player_character.gd" type="Script" id=1]
+[ext_resource path="res://project/player-character/player_character.gd" type="Script" id=1]
 [ext_resource path="res://addons/basic_2d_assets/polygons/square/square_filled.png" type="Texture" id=2]
 [ext_resource path="res://addons/components/movement/speed/speed_calculator.gd" type="Script" id=3]
 [ext_resource path="res://addons/components/movement/direction/wasd_direction_calculator_2d.gd" type="Script" id=4]
