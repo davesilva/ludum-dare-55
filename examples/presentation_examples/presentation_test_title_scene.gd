@@ -9,7 +9,7 @@ func context_id_string() -> String:
 	
 
 func _ready():
-	PresentationServices.ui_service.set_root_control(color_rect)
+	PresentationServices.ui_service.set_presentation_root(color_rect)
 	
 
 func present_random_color_overlay():
