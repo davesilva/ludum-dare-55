@@ -1,14 +1,16 @@
 extends Node2D
 class_name SpookyRoom
 
-# Declare member variables here. Examples:
-export var dirtiness := 0.0
+
 # TODO: make a resource(?) 
 export var cleanImage: Texture
 export var dirtyImage: Texture
 export var roomWidth: int
 export var roomHeight: int
 export var processSpeedInSeconds: int = 5
+
+# These ones are generic
+export var dirtiness := 0.0
 var naughtyLevel := 0
 var niceLevel := 0
 enum ROOM_STATE {CLEAN, DIRTY, RUINED}
@@ -27,6 +29,7 @@ func _ready():
 	$Sprite.texture = cleanImage
 	$Sprite.scale.x = float(roomWidth)/$Sprite.texture.get_width()
 	$Sprite.scale.y = float(roomHeight)/$Sprite.texture.get_height()
+	$RoomArea2D/CollisionShape2D.shape.set_extents(Vector2(roomWidth, roomHeight))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,7 +44,6 @@ func _process(delta):
 
 	var progress = (delta*((-1)*(niceLevel+naughtyLevel)))
 	dirtiness += progress
-
 
 	if dirtiness > processSpeedInSeconds:
 		dirtiness = processSpeedInSeconds
