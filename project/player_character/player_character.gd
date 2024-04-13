@@ -9,10 +9,18 @@ enum PlayerActions {
 }
 
 onready var movement := $Movement as MovementComponent2D
+onready var summoning_power := $SummoningPower as GhostSummonerComponent
 onready var door_exit = Vector2.ZERO
 onready var can_travel = false
-onready var available_action = PlayerActions.NONE
+onready var available_action = PlayerActions.NONE setget action_setter
 
+
+func action_setter(new_value: int):
+	available_action = new_value
+	
+	summoning_power.is_enabled = available_action == PlayerActions.SUMMON
+			
+	
 
 func _ready():
 	movement.target = self
