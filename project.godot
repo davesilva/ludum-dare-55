@@ -157,7 +157,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "PlayerCharacter",
 "language": "GDScript",
-"path": "res://project/player-character/player_character.gd"
+"path": "res://project/player_character/player_character.gd"
 }, {
 "base": "BaseTweenTransformFeedback2D",
 "class": "PositionFeedback2D",
@@ -338,7 +338,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Starter Kit"
+config/name="Ludum Dare 55"
 run/main_scene="res://examples/samples.tscn"
 config/icon="res://defaults/icon.png"
 
@@ -397,6 +397,11 @@ test_overlay_dismiss_all={
 juice_press_test_feedback={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":70,"unicode":0,"echo":false,"script":null)
+ ]
+}
+primary_action={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":87,"unicode":0,"echo":false,"script":null)
  ]
 }
 

@@ -9,6 +9,7 @@ signal velocity_changed(velocity)
 export (float) var gravity = 0.0
 export (NodePath) var speed_calculator_path
 export (NodePath) var direction_calculator_path
+export (bool) var is_enabled = true
 
 func _speed_calculator() -> Node:
 	return get_node(speed_calculator_path)
@@ -22,12 +23,25 @@ onready var velocity = Vector2.ZERO
 
 var target: KinematicBody2D = null
 
-
 func reset():
 	hard_stop()
+	
+
+func _process(delta):
+	if is_enabled:
+		_on_process(delta)
+		
+		
+func _on_process(delta):
+	pass
 
 
 func _physics_process(delta):
+	if is_enabled:
+		_on_physics_process(delta)
+
+
+func _on_physics_process(delta):
 	if not target:
 		return
 
