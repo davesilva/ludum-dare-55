@@ -249,6 +249,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://project/spooky_room/spooky_room.gd"
 }, {
+"base": "Reference",
+"class": "SpookyRoomInfo",
+"language": "GDScript",
+"path": "res://project/spooky_room/spooky_room_info.gd"
+}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -373,6 +378,7 @@ _global_script_class_icons={
 "SpinStopCalculator": "",
 "Spinner": "",
 "SpookyRoom": "",
+"SpookyRoomInfo": "",
 "State": "",
 "StateMachine": "",
 "SummoningCircle": "",
