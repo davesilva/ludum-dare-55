@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 class_name Ghost
 
 enum STATE {RAGING, CLEANING, IDLE, TRAVELING}
