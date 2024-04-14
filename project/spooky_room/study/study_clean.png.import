@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/run_2.png-f7e76e9b76f638a29618147f99952fa6.stex"
+path="res://.import/study_clean.png-b1c4fda6393d7b1ec1c0ce245e33977f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://project/player_character/art/run_2.png"
-dest_files=[ "res://.import/run_2.png-f7e76e9b76f638a29618147f99952fa6.stex" ]
+source_file="res://project/spooky_room/study/study_clean.png"
+dest_files=[ "res://.import/study_clean.png-b1c4fda6393d7b1ec1c0ce245e33977f.stex" ]
 
 [params]
 

@@ -34,8 +34,6 @@ func dirtinessToState(c: int) -> int:
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.texture = cleanImage
-	sprite.scale.x = float(roomWidth)/sprite.texture.get_width()
-	sprite.scale.y = float(roomHeight)/sprite.texture.get_height()
 	
 	room_info = SpookyRoomInfo.new(self.global_position)
 	

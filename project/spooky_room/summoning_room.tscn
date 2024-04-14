@@ -5,7 +5,3 @@
 
 [node name="SummoningRoom" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-cleanImage = null
-dirtyImage = null
-roomWidth = 0
-roomHeight = 0
