@@ -2,7 +2,8 @@ extends Node2D
 class_name KeyComboController
 
 onready var timer = $Timer
-onready var combo_h_box_container = $Control/VBoxContainer/ComboHBoxContainer
+onready var combo_h_box_container = $Control/PanelContainer/VBoxContainer/ComboHBoxContainer
+onready var panel_container = $Control/PanelContainer
 
 export(float) var timer_length = 2.0
 export(Array) var key_pool = [KEY_LEFT, KEY_UP, KEY_DOWN, KEY_RIGHT]
@@ -24,20 +25,22 @@ func _on_comboing_enabled_set(value: bool) -> void:
 		sequence_to_match = generate_combo_sequence()
 		combo_h_box_container.clear_keys()
 		combo_h_box_container.add_keys(sequence_to_match)
-
+		panel_container.show()
 
 func end_combo(force_end=false) -> void:
 	current_idx = 0
 	timer.stop()
 	combo_running = false
 	combo_h_box_container.reset_key_colors()
+
 	if not force_end and current_combo.hash() == sequence_to_match.hash():
 		sequence_length = sequence_length + 1
 		combo_h_box_container.clear_keys()
 		sequence_to_match = generate_combo_sequence()
 		combo_h_box_container.add_keys(sequence_to_match)
 		emit_signal("combo_completed", current_combo)
-		
+	else:
+		panel_container.hide	()
 	current_combo = []
 
 func generate_combo_sequence() -> Array:
