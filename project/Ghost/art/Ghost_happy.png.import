@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ghost.png-c851ea66b866b37d5791b3870283700a.stex"
+path="res://.import/Ghost_happy.png-365d5fabaea80029b365d1c38938626c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://project/Ghost/ghost.png"
-dest_files=[ "res://.import/ghost.png-c851ea66b866b37d5791b3870283700a.stex" ]
+source_file="res://project/Ghost/art/Ghost_happy.png"
+dest_files=[ "res://.import/Ghost_happy.png-365d5fabaea80029b365d1c38938626c.stex" ]
 
 [params]
 
