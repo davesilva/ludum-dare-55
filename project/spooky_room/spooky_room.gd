@@ -6,9 +6,11 @@ class_name SpookyRoom
 # TODO: make a resource(?) 
 export var cleanImage: Texture
 export var dirtyImage: Texture
+export var ruinedImage: Texture
 export var roomWidth: int
 export var roomHeight: int
 export var processSpeedInSeconds: int = 5
+export var roomHasTask: bool = true
 
 # These ones are generic
 export var dirtiness := 0
@@ -21,6 +23,8 @@ onready var room_collision_shape_2d = $RoomArea2D/RoomCollisionShape2D
 var room_info: SpookyRoomInfo
 var inhabiting_ghosts: Array = []
 var contains_player: bool = false
+# NOTE: Change this if we commit for sure to just one ghost
+var present_ghosts: Dictionary = {}
 
 # Converts the int to the state (real return type is ROOM_STATE)
 func dirtinessToState(c: int) -> int:
