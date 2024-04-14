@@ -83,6 +83,7 @@ script = ExtResource( 6 )
 
 [node name="KeyComboController" parent="SummoningPower" instance=ExtResource( 7 )]
 unique_name_in_owner = true
+position = Vector2( -1, 60 )
 
 [node name="GhostDirector" parent="." instance=ExtResource( 11 )]
 
