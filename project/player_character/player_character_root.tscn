@@ -87,5 +87,4 @@ unique_name_in_owner = true
 [node name="GhostDirector" parent="." instance=ExtResource( 11 )]
 
 [connection signal="velocity_changed" from="Movement" to="." method="_on_velocity_changed"]
-[connection signal="ghost_summoned" from="SummoningPower" to="." method="_on_SummoningPower_ghost_summoned"]
 [connection signal="combo_completed" from="SummoningPower/KeyComboController" to="SummoningPower" method="_on_KeyComboController_combo_completed"]

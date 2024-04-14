@@ -23,14 +23,13 @@ func action_setter(new_value: int):
 	available_action = new_value
 	
 	summoning_power.is_enabled = available_action == PlayerActions.SUMMON
-			
-	
+
 
 func _ready():
 	movement.target = self
 	animation_player.play("idle")
 	add_to_group(Constants.GROUP_PLAYER)
-	GlobalSignals.connect("room_clicked", self, "_on_room_clicked")
+
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("primary_action"):

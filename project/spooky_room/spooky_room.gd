@@ -105,14 +105,14 @@ func _on_RoomArea2D_body_exited(body):
 		contains_player = false
 
 
-func _on_RoomArea2D_area_entered(area):
+func _on_GhostActiveArea2D_area_entered(area):
 	if area.is_in_group(Constants.GROUP_GHOST):
 		var ghost = area as Ghost
 		ghost.current_location_info = room_info
 		present_ghosts.append(ghost)
 
 
-func _on_RoomArea2D_area_exited(area):
+func _on_GhostActiveArea2D_area_exited(area):
 	if area.is_in_group(Constants.GROUP_GHOST):
 		var ghost = area as Ghost
 		present_ghosts.erase(ghost)
