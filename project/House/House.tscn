@@ -23,7 +23,3 @@ roomHeight = 350
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 2 )]
 position = Vector2( 250, 245 )
-
-[editable path="Bedroom"]
-[editable path="Kitchen"]
-[editable path="SummoningRoom"]
