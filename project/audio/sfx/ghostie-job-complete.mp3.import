@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ghostie-job-complete.mp3-468e93d354d7a16358e413382e10ee1b.mp3str"
+
+[deps]
+
+source_file="res://project/audio/sfx/ghostie-job-complete.mp3"
+dest_files=[ "res://.import/ghostie-job-complete.mp3-468e93d354d7a16358e413382e10ee1b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

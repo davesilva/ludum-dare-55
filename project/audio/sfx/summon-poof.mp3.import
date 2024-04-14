@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/summon-poof.mp3-fb710530c97f0e0d3a3deb9ee1eaa026.mp3str"
+
+[deps]
+
+source_file="res://project/audio/sfx/summon-poof.mp3"
+dest_files=[ "res://.import/summon-poof.mp3-fb710530c97f0e0d3a3deb9ee1eaa026.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
