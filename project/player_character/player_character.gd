@@ -8,6 +8,8 @@ enum PlayerActions {
 	COMMAND
 }
 
+onready var animation_player: AnimationPlayer = $AnimationPlayer
+onready var sprite: Sprite = $Sprite
 onready var movement := $Movement as MovementComponent2D
 onready var summoning_power := $SummoningPower as GhostSummonerComponent
 onready var door_exit = Vector2.ZERO
@@ -24,6 +26,7 @@ func action_setter(new_value: int):
 
 func _ready():
 	movement.target = self
+	animation_player.play("idle")
 	
 	
 func _process(_delta):
@@ -43,3 +46,15 @@ func _execute_action():
 			print("study")
 		PlayerActions.COMMAND:
 			print("command")
+
+
+func _on_velocity_changed(velocity):
+	if abs(velocity.x) < 1.0:
+		animation_player.play("idle")
+		return
+	if velocity.x > 1.0: 
+		sprite.flip_h = false
+		animation_player.play("run")
+	elif velocity.x < 1.0:
+		sprite.flip_h = true
+		animation_player.play("run")

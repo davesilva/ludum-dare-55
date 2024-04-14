@@ -12,7 +12,7 @@ position = Vector2( 501, 540 )
 scale = Vector2( 10, 0.2 )
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 2 )]
-position = Vector2( 175, 256 )
+position = Vector2( 180, 416 )
 
 [node name="TestSummoningCircle" parent="." instance=ExtResource( 3 )]
 position = Vector2( 704, 459 )

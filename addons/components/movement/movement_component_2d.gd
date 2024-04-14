@@ -68,6 +68,7 @@ func _on_physics_process(delta):
 	velocity.y += gravity * delta
 	# move and slide option, with floor 
 	velocity = target.move_and_slide(velocity, Vector2(0, -1))
+	_set_velocity(velocity)
 #	var collision_info = target.move_and_collide(velocity * delta)
 
 
