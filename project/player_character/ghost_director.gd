@@ -9,4 +9,4 @@ func _ready() -> void:
 	
 func _on_room_clicked(room: SpookyRoom) -> void:
 	if enabled and ghost:
-		ghost.send_to_location(room)
+		ghost.send_to_location(room.room_info)

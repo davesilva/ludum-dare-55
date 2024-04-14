@@ -15,7 +15,7 @@ onready var summoning_power := $SummoningPower as GhostSummonerComponent
 onready var door_exit = Vector2.ZERO
 onready var can_travel = false
 onready var available_action = PlayerActions.NONE setget action_setter
-onready var current_room
+onready var current_room_info = SpookyRoomInfo
 onready var ghost_director = $GhostDirector
 
 

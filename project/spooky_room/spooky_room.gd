@@ -18,6 +18,8 @@ enum ROOM_STATE {CLEAN, DIRTY, RUINED}
 onready var sprite = $Sprite
 onready var room_collision_shape_2d = $RoomArea2D/RoomCollisionShape2D
 
+var room_info: SpookyRoomInfo
+
 
 # Converts the int to the state (real return type is ROOM_STATE)
 func dirtinessToState(c: int) -> int:
@@ -33,6 +35,9 @@ func _ready():
 	sprite.texture = cleanImage
 	sprite.scale.x = float(roomWidth)/sprite.texture.get_width()
 	sprite.scale.y = float(roomHeight)/sprite.texture.get_height()
+	
+	room_info = SpookyRoomInfo.new(self.global_position)
+	
 	# room_collision_shape_2d.shape.set_extents(Vector2(roomWidth, roomHeight))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -64,10 +69,10 @@ func _process(delta):
 func _on_RoomArea2D_body_entered(body):
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		var player = body as PlayerCharacter
-		player.current_room = self
+		player.current_room_info = room_info
 	elif body.is_in_group(Constants.GROUP_GHOST):
 		var ghost = body as Ghost
-		ghost.current_location = self
+		ghost.current_location_info = room_info
 
 
 func _on_RoomArea2D_input_event(_viewport, event, _shape_idx):
