@@ -416,7 +416,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Ludum Dare 55"
+config/name="Ghostdusters"
 run/main_scene="res://project/House/House.tscn"
 config/icon="res://defaults/icon.png"
 
