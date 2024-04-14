@@ -62,3 +62,8 @@ func _process(delta):
 			sprite.texture = dirtyImage
 		ROOM_STATE.RUINED:
 			sprite.texture = dirtyImage
+
+func _on_RoomArea2D_body_entered(body):
+	if body.is_in_group("Player"):
+		var player = body as PlayerCharacter
+		player.current_room = self as SpookyRoom
