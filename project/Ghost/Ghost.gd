@@ -3,7 +3,7 @@ class_name Ghost
 
 enum STATE {RAGING, CLEANING, IDLE, TRAVELING}
 
-export (int) var mood = 100 setget _mood_set
+export (int) var mood = 100
 export (float) var movement_speed = 1.0
 export (float) var chore_speed = 1.0
 export (float) var mood_change_per_second = 0.3 #is positive or negative depending on state
@@ -46,29 +46,49 @@ func _process(delta):
 	
 	
 func _evaluate_states(_delta):
-	if state == STATE.RAGING and is_happy():
-		mood = 10 #give it some padding
-		state = STATE.IDLE
-		return
-		
 	if state != STATE.RAGING and is_angry():
-		mood = -10 # give it some padding
+		set_mood(-10)
 		state = STATE.RAGING
 		return
-		
-	if state != STATE.TRAVELING and self.destination_info != null:
+	
+	if state != STATE.TRAVELING and destination_info != null:
 		state = STATE.TRAVELING
 		return
 		
-	if state == STATE.TRAVELING and self.destination_info == null:
-		state = STATE.IDLE
-		return
+	match state:
+		STATE.IDLE:
+			_evaluate_idle()
+		STATE.TRAVELING:
+			_evaluate_traveling()
+		STATE.CLEANING:
+			_evaluate_cleaning()
+		STATE.RAGING:
+			_evaluate_raging()
 		
+
+func _evaluate_idle():
 	if current_location_info and current_location_info.dirtiness > 0:
 		state = STATE.CLEANING
 		return
+	
+
+func _evaluate_traveling():
+	if destination_info == null:
+		state = STATE.IDLE
+	
 		
+func _evaluate_cleaning():
 	if current_location_info and current_location_info.dirtiness <= 0:
+		state = STATE.IDLE
+	
+
+func _evaluate_raging():
+	if current_location_info and current_location_info.dirtiness > 0:
+		state = STATE.CLEANING
+		return
+	
+	if is_happy():
+		set_mood(10)
 		state = STATE.IDLE
 		return
 		
@@ -76,14 +96,13 @@ func _evaluate_states(_delta):
 func _process_state(delta):
 	match state:
 		STATE.IDLE:
-			mood -= mood_change_per_second * delta
+			update_mood(-mood_change_per_second * delta)
 		STATE.TRAVELING:
 			pass
 		STATE.CLEANING:
-			mood += mood_change_per_second * delta
-			mood = clamp(mood, 0, 100)
+			update_mood(mood_change_per_second * delta)
 		STATE.RAGING:
-			mood -= mood_change_per_second * delta * 1.2
+			update_mood(-mood_change_per_second * delta * 1.2)
 
 
 func send_to_location(send_destination_info: SpookyRoomInfo):
@@ -114,13 +133,23 @@ func is_happy():
 	
 func is_angry():
 	return self.mood < 0
+	
+	
+func update_mood(added_value):
+	set_mood(mood + added_value)
+	
+	
+func set_mood(mood_value):
+	mood = clamp(mood_value, -1000, 100)
+	update_sprites_from_mood()
+	
 
-func _mood_set(new_mood):
-	if new_mood < 25 and new_mood >= -40:
+func update_sprites_from_mood():
+	if mood < 25 and mood >= -40:
 		sprite.texture = angry_ghost_images[0]
-	elif new_mood < -40 and new_mood >= -80:
+	elif mood < -40 and mood >= -80:
 		sprite.texture = angry_ghost_images[1]
-	elif new_mood < -80:
+	elif mood < -80:
 		sprite.texture = angry_ghost_images[2]
 	else:
 		sprite.texture = happy_ghost_image

@@ -96,6 +96,10 @@ func _process(delta):
 					sprite.texture = dirtierImage
 				ROOM_STATE.RUINED:
 					sprite.texture = ruinedImage
+	
+	if dirtiness < 0.5:
+		dirtiness = 0
+		update_progress()
 					
 	_update_debug_labels()
 	_sync_room_info()
