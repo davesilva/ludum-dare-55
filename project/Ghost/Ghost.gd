@@ -3,7 +3,7 @@ class_name Ghost
 
 enum STATE {RAGING, CLEANING, IDLE, TRAVELING}
 
-export (int) var mood = 100 setget mood_set
+export (int) var mood = 100 setget _mood_set
 export (float) var movement_speed = 1.0
 export (float) var chore_speed = 1.0
 
@@ -58,7 +58,7 @@ func is_happy():
 func is_angry():
 	return self.mood < 0
 
-func mood_set(new_mood):
+func _mood_set(new_mood):
 	if new_mood < 25 and new_mood >= -40:
 		sprite.texture = angry_ghost_images[0]
 	elif new_mood < -40 and new_mood >= -80:

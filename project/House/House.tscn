@@ -1,12 +1,16 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://project/spooky_room/spooky_room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://project/player_character/player_character_root.tscn" type="PackedScene" id=2]
 [ext_resource path="res://project/spooky_room/summoning_room.tscn" type="PackedScene" id=3]
+[ext_resource path="res://project/spooky_room/dining_room/diningroom_clean.png" type="Texture" id=4]
+[ext_resource path="res://project/spooky_room/dining_room/diningroom_messy1.png" type="Texture" id=5]
 [ext_resource path="res://project/spooky_room/study/study_clean.png" type="Texture" id=6]
+[ext_resource path="res://project/spooky_room/dining_room/diningroom_messy3.png" type="Texture" id=7]
 [ext_resource path="res://project/spooky_room/study/study_messy1.png" type="Texture" id=8]
 [ext_resource path="res://project/spooky_room/study/study_messy2.png" type="Texture" id=9]
 [ext_resource path="res://project/spooky_room/study/study_messy3.png" type="Texture" id=10]
+[ext_resource path="res://project/spooky_room/dining_room/diningroom_messy2.png" type="Texture" id=11]
 
 [node name="House" type="Node2D"]
 
@@ -25,6 +29,13 @@ roomWidth = 298
 [node name="SummoningRoom" parent="." instance=ExtResource( 3 )]
 position = Vector2( 875, 104 )
 roomHasTask = false
+
+[node name="DiningRoom" parent="." instance=ExtResource( 1 )]
+position = Vector2( 214, 322 )
+cleanImage = ExtResource( 4 )
+dirtyImage = ExtResource( 5 )
+dirtierImage = ExtResource( 11 )
+ruinedImage = ExtResource( 7 )
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 2 )]
 position = Vector2( 82, 138 )
