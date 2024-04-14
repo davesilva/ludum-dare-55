@@ -45,6 +45,16 @@ func send_to_location(send_destination_info: SpookyRoomInfo):
 	self.destination_info = send_destination_info
 	var distance = self.position.distance_to(destination_info.global_position)
 	var duration = distance / (self.movement_speed * 100)
+	
+	var scale_tween = create_tween()
+
+	if send_destination_info.global_position.x > self.global_position.x:
+		#sprite.scale.x = -1
+		scale_tween.tween_property(self, "scale", Vector2(-1,1), .2)
+	else:
+		#sprite.scale.x = 1
+		scale_tween.tween_property(self, "scale", Vector2(1,1), .2)
+
 	state = STATE.TRAVELING
 	var tween = create_tween()
 	tween.tween_property(self, "position", destination_info.global_position, duration)
