@@ -1,17 +1,10 @@
 extends Node2D
 class_name GameContextWorld
 
+export (PackedScene) var initial_level
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+onready var level_root = $LevelRoot
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	var initial_level_instance = initial_level.instance()
+	level_root.add_child(initial_level_instance)
