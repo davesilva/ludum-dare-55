@@ -20,13 +20,12 @@ onready var sprite = $Sprite
 onready var room_collision_shape_2d = $RoomArea2D/RoomCollisionShape2D
 
 var room_info: SpookyRoomInfo
-var inhabiting_ghosts: Array = []
 var contains_player: bool = false
 # NOTE: Change this if we commit for sure to just one ghost
-var present_ghosts: Dictionary = {}
+var present_ghosts: Array = []
 
 # Converts the int to the state (real return type is ROOM_STATE)
-func dirtinessToState(c: int) -> int:
+func dirtinessToState(c: float) -> int:
 	if c < processSpeedInSeconds/3.0:
 		return ROOM_STATE.CLEAN
 	elif c < (processSpeedInSeconds) * 2/3.0:
@@ -51,10 +50,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# TODO: Remove this
-	if Input.is_action_pressed("ui_up") and dirtiness > 0:
-		dirtiness -= processSpeedInSeconds/4.0
-	elif Input.is_action_pressed("ui_down") and dirtiness < processSpeedInSeconds:
-		dirtiness += processSpeedInSeconds/4.0
+	if Input.is_action_just_pressed("ui_up") and dirtiness > 0:
+		dirtiness -= processSpeedInSeconds/10.0
+	elif Input.is_action_just_pressed("ui_down") and dirtiness < processSpeedInSeconds:
+		dirtiness += processSpeedInSeconds/10.0
 		
 	if roomHasTask:
 		# NOTE: This can be simplified a lot if we only have one ghost
@@ -110,10 +109,10 @@ func _on_RoomArea2D_area_entered(area):
 	if area.is_in_group(Constants.GROUP_GHOST):
 		var ghost = area as Ghost
 		ghost.current_location_info = room_info
-		inhabiting_ghosts.append(ghost)
+		present_ghosts.append(ghost)
 
 
 func _on_RoomArea2D_area_exited(area):
 	if area.is_in_group(Constants.GROUP_GHOST):
 		var ghost = area as Ghost
-		inhabiting_ghosts.erase(ghost)
+		present_ghosts.erase(ghost)
