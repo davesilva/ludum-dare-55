@@ -20,6 +20,7 @@ cleanImage = ExtResource( 4 )
 dirtyImage = ExtResource( 5 )
 roomWidth = 500
 roomHeight = 350
+roomHasTask = false
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 2 )]
 position = Vector2( 250, 245 )
