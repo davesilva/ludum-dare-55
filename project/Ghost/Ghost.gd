@@ -7,7 +7,7 @@ export (int) var mood = 100
 export (float) var movement_speed = 1.0
 export (float) var chore_speed = 1.0
 
-var selected = false
+var selected = true
 # PRETEND THIS IS A GHOST_STATE
 var state: int = STATE.IDLE
 
@@ -26,9 +26,12 @@ func send_to_location(send_destination_info: SpookyRoomInfo):
 	self.destination_info = send_destination_info
 	var distance = self.position.distance_to(destination_info.global_position)
 	var duration = distance / (self.movement_speed * 100)
-	print(distance)
+	state = STATE.TRAVELING
 	var tween = create_tween()
 	tween.tween_property(self, "position", destination_info.global_position, duration)
+	yield(tween,"finished")
+	state = STATE.IDLE
+
 
 func is_happy():
 	return self.mood >= 0

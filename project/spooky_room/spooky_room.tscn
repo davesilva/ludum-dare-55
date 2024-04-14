@@ -32,6 +32,8 @@ texture = ExtResource( 3 )
 [node name="GhostActiveAreaCollisionShape2D" type="CollisionShape2D" parent="GhostActiveArea2D"]
 shape = SubResource( 4 )
 
+[connection signal="area_entered" from="RoomArea2D" to="." method="_on_RoomArea2D_area_entered"]
+[connection signal="area_exited" from="RoomArea2D" to="." method="_on_RoomArea2D_area_exited"]
 [connection signal="body_entered" from="RoomArea2D" to="." method="_on_RoomArea2D_body_entered"]
 [connection signal="body_exited" from="RoomArea2D" to="." method="_on_RoomArea2D_body_exited"]
 [connection signal="input_event" from="RoomArea2D" to="." method="_on_RoomArea2D_input_event"]

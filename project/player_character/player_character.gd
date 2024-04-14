@@ -30,7 +30,7 @@ func _ready():
 	movement.target = self
 	animation_player.play("idle")
 	add_to_group(Constants.GROUP_PLAYER)
-	
+	GlobalSignals.connect("room_clicked", self, "_on_room_clicked")
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("primary_action"):
@@ -60,8 +60,3 @@ func _on_velocity_changed(velocity):
 	elif velocity.x < 1.0:
 		sprite.flip_h = true
 		animation_player.play("run")
-
-func _on_SummoningPower_ghost_summoned(ghost):
-	ghost.selected = true
-	ghost_director.enabled = true
-	ghost_director.ghost = ghost
