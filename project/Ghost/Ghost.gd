@@ -2,8 +2,8 @@ extends Node2D
 class_name Ghost
 
 export (int) var mood = 100
-export (float) var movement_speed = 1
-export (float) var chore_speed = 1
+export (float) var movement_speed = 1.0
+export (float) var chore_speed = 1.0
 
 var selected = false
 
