@@ -13,7 +13,7 @@ func _ready():
 #	pass
 
 func _on_Area2D_body_entered(body):
-	if body.is_in_group("Player"):
+	if body.is_in_group(Constants.GROUP_PLAYER):
 		var other_door = get_node(other_door_path) as Node2D
 		
 		print(str(other_door.position))
@@ -24,7 +24,7 @@ func _on_Area2D_body_entered(body):
 
 
 func _on_Area2D_body_exited(body):
-	if body.is_in_group("Player"):
+	if body.is_in_group(Constants.GROUP_PLAYER):
 		var player = body as PlayerCharacter
 		player.door_exit = Vector2.ZERO
 		player.can_travel = false

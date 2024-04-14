@@ -28,6 +28,7 @@ func action_setter(new_value: int):
 func _ready():
 	movement.target = self
 	animation_player.play("idle")
+	add_to_group(Constants.GROUP_PLAYER)
 	
 	
 func _process(_delta):

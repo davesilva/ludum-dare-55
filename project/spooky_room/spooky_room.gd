@@ -1,7 +1,6 @@
 extends Node2D
 class_name SpookyRoom
 
-
 # TODO: A COUPLE ROOMS NEED WALLS BUT MOST DON'T
 
 # TODO: make a resource(?) 
@@ -64,6 +63,9 @@ func _process(delta):
 			sprite.texture = dirtyImage
 
 func _on_RoomArea2D_body_entered(body):
-	if body.is_in_group("Player"):
+	if body.is_in_group(Constants.GROUP_PLAYER):
 		var player = body as PlayerCharacter
-		player.current_room = self as SpookyRoom
+		player.current_room = self
+	elif body.is_in_group(Constants.GROUP_GHOST):
+		var ghost = body as Ghost
+		ghost.current_location = self

@@ -7,13 +7,14 @@ export (float) var chore_speed = 1
 
 var selected = false
 
-var destination: SpookyRoom
+var destination
+var current_location
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	add_to_group(Constants.GROUP_GHOST)
 
-func _on_send_to_location(destination: SpookyRoom):
+func _on_send_to_location(destination):
 	if !self.selected:
 		return
 
