@@ -96,6 +96,10 @@ func _process(delta):
 					sprite.texture = dirtierImage
 				ROOM_STATE.RUINED:
 					sprite.texture = ruinedImage
+					
+	_update_debug_labels()
+	_sync_room_info()
+
 
 func update_progress():
 	var progress = (dirtiness/processSpeedInSeconds)*100
@@ -104,12 +108,18 @@ func update_progress():
 		ruination_meter.visible = false
 	else:
 		ruination_meter.visible = true
+	
+	
+func _sync_room_info():
+	room_info.dirtiness = dirtiness
+
 
 func _on_RoomArea2D_body_entered(body):
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		var player = body as PlayerCharacter
 		player.current_room_info = room_info
 		contains_player = true
+
 
 func _on_RoomArea2D_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed:
@@ -134,3 +144,12 @@ func _on_GhostActiveArea2D_area_exited(area):
 	if area.is_in_group(Constants.GROUP_GHOST):
 		var ghost = area as Ghost
 		present_ghosts.erase(ghost)
+
+###############
+#### DEBUG ####
+###############
+onready var dirty_debug_label = $Debug/ColorRect/DirtyDebugLabel
+
+func _update_debug_labels():
+	var rounded_dirty = stepify(room_info.dirtiness, 0.1)
+	dirty_debug_label.text = "DIRTY: " + str(rounded_dirty)

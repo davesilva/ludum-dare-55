@@ -1,4 +1,5 @@
 extends Node2D
+class_name GhostDirector
 
 var enabled = true
 
@@ -12,5 +13,5 @@ func _on_room_clicked(clicked_room: SpookyRoom) -> void:
 		if room.contains_player:
 			for ghost in room.present_ghosts:
 				ghost = ghost as Ghost
-				if ghost.state == Ghost.STATE.IDLE:
+				if ghost.state == Ghost.STATE.IDLE or ghost.state == Ghost.STATE.CLEANING:
 					ghost.send_to_location(clicked_room.room_info)

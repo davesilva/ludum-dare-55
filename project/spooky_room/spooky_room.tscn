@@ -1,15 +1,20 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://project/spooky_room/bathroom/bathroom_messy3.png" type="Texture" id=1]
 [ext_resource path="res://project/spooky_room/spooky_room.gd" type="Script" id=2]
 [ext_resource path="res://project/spooky_room/bathroom/bathroom_clean.png" type="Texture" id=3]
 [ext_resource path="res://project/circle_progress_bar/CircleProgressBar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://project/spooky_room/bathroom/bathroom_messy2.png" type="Texture" id=5]
+[ext_resource path="res://addons/fonts/nk57_monospace.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 70.5, 51 )
 
 [sub_resource type="RectangleShape2D" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+font_data = ExtResource( 6 )
 
 [node name="SpookyRoomBase" type="Node2D"]
 position = Vector2( 1, 0 )
@@ -48,9 +53,28 @@ margin_left = -30.0
 margin_top = -30.0
 margin_right = 70.0
 margin_bottom = 70.0
-mouse_filter = 2
 tint_under = Color( 0, 0, 0, 1 )
 tint_progress = Color( 0.827451, 0, 0, 1 )
+
+[node name="Debug" type="Control" parent="."]
+visible = false
+margin_left = -117.0
+margin_top = -91.0
+margin_right = 133.0
+margin_bottom = -51.0
+
+[node name="ColorRect" type="ColorRect" parent="Debug"]
+anchor_right = 1.0
+anchor_bottom = 0.8
+color = Color( 0.0901961, 0.14902, 0.32549, 1 )
+
+[node name="DirtyDebugLabel" type="Label" parent="Debug/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 5 )
+text = "DIRTY: "
+align = 1
+valign = 1
 
 [connection signal="body_entered" from="RoomArea2D" to="." method="_on_RoomArea2D_body_entered"]
 [connection signal="body_exited" from="RoomArea2D" to="." method="_on_RoomArea2D_body_exited"]

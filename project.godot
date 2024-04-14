@@ -125,6 +125,11 @@ _global_script_classes=[ {
 "path": "res://project/Ghost/Ghost.gd"
 }, {
 "base": "Node2D",
+"class": "GhostDirector",
+"language": "GDScript",
+"path": "res://project/player_character/ghost_director.gd"
+}, {
+"base": "Node2D",
 "class": "GhostSummonerComponent",
 "language": "GDScript",
 "path": "res://project/GhostSummoning/GhostSummonerComponent.gd"
@@ -373,6 +378,7 @@ _global_script_class_icons={
 "GameContextUI": "",
 "GameContextWorld": "",
 "Ghost": "",
+"GhostDirector": "",
 "GhostSummonerComponent": "",
 "GreenSprite": "",
 "InlineTimer": "",
