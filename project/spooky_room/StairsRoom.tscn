@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://project/spooky_room/stairs_room.gd" type="Script" id=1]
+[ext_resource path="res://project/spooky_room/spooky_room.tscn" type="PackedScene" id=2]
+[ext_resource path="res://project/spooky_room/stairs/stairs_up-only.png" type="Texture" id=3]
+
+[node name="StairsRoom" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+cleanImage = ExtResource( 3 )
+dirtyImage = null
+dirtierImage = null
+ruinedImage = null
+roomWidth = 143
+roomHasTask = false
+target_room_path = NodePath("")
