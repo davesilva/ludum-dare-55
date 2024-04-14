@@ -5,6 +5,7 @@
 [node name="CircleProgressBar" type="TextureProgress"]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 2
 texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 1 )
 fill_mode = 4
