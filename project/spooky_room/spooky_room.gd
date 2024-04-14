@@ -54,9 +54,9 @@ func _process(delta):
 		var helpful_ghosts = []
 		var naughty_ghosts = []
 		for ghost in present_ghosts:
-			if ghost.is_happy() and ghost.state != Ghost.STATE.Traveling:
+			if ghost.is_happy() and ghost.state != Ghost.STATE.TRAVELING:
 				helpful_ghosts.append(ghost)
-			elif ghost.is_angry() and ghost.state != Ghost.STATE.Traveling:
+			elif ghost.is_angry() and ghost.state != Ghost.STATE.TRAVELING:
 				naughty_ghosts.append(ghost)
 		var progress = 0
 		for ghost in helpful_ghosts:
