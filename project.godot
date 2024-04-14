@@ -400,6 +400,7 @@ config/icon="res://defaults/icon.png"
 
 EventBus="*res://addons/event_bus/event_bus.tscn"
 PresentationServices="*res://addons/presentation/presentation_services.tscn"
+GlobalSignals="*res://project/global_signals.gd"
 Constants="*res://project/autoloads/Constants.tscn"
 
 [display]

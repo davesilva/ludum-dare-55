@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://project/player_character/player_character.gd" type="Script" id=1]
 [ext_resource path="res://project/player_character/art/idle.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://project/player_character/art/run_3.png" type="Texture" id=8]
 [ext_resource path="res://project/player_character/art/run_1.png" type="Texture" id=9]
 [ext_resource path="res://project/player_character/art/run_2.png" type="Texture" id=10]
+[ext_resource path="res://project/player_character/GhostDirector.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -83,5 +84,8 @@ script = ExtResource( 6 )
 [node name="KeyComboController" parent="SummoningPower" instance=ExtResource( 7 )]
 unique_name_in_owner = true
 
+[node name="GhostDirector" parent="." instance=ExtResource( 11 )]
+
 [connection signal="velocity_changed" from="Movement" to="." method="_on_velocity_changed"]
+[connection signal="ghost_summoned" from="SummoningPower" to="." method="_on_SummoningPower_ghost_summoned"]
 [connection signal="combo_completed" from="SummoningPower/KeyComboController" to="SummoningPower" method="_on_KeyComboController_combo_completed"]

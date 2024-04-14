@@ -69,3 +69,8 @@ func _on_RoomArea2D_body_entered(body):
 	elif body.is_in_group(Constants.GROUP_GHOST):
 		var ghost = body as Ghost
 		ghost.current_location = self
+
+func _on_RoomArea2D_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.pressed:
+		GlobalSignals.emit_signal("room_clicked", self)
+

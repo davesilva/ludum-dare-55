@@ -16,6 +16,7 @@ onready var door_exit = Vector2.ZERO
 onready var can_travel = false
 onready var available_action = PlayerActions.NONE setget action_setter
 onready var current_room
+onready var ghost_director = $GhostDirector
 
 
 func action_setter(new_value: int):
@@ -49,7 +50,6 @@ func _execute_action():
 		PlayerActions.COMMAND:
 			print("command")
 
-
 func _on_velocity_changed(velocity):
 	if abs(velocity.x) < 1.0:
 		animation_player.play("idle")
@@ -60,3 +60,8 @@ func _on_velocity_changed(velocity):
 	elif velocity.x < 1.0:
 		sprite.flip_h = true
 		animation_player.play("run")
+
+func _on_SummoningPower_ghost_summoned(ghost):
+	ghost.selected = true
+	ghost_director.enabled = true
+	ghost_director.ghost = ghost

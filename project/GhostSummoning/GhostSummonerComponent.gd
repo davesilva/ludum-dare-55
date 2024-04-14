@@ -5,9 +5,11 @@ export (bool) var is_enabled = false setget _update_enabled
 
 onready var key_combo_controller = $"%KeyComboController"
 
+signal ghost_summoned(ghost)
+
 
 var combo_dict = {
-	[KEY_LEFT, KEY_UP, KEY_DOWN, KEY_RIGHT]: preload("res://project/GhostSummoning/fake_ghost.tscn")
+	[KEY_LEFT, KEY_UP, KEY_DOWN, KEY_RIGHT]: preload("res://project/Ghost/Ghost.tscn")
 }
 
 func _update_enabled(new_value: bool):
@@ -23,3 +25,4 @@ func _on_KeyComboController_combo_completed(combo):
 		var ghost = combo_dict[combo].instance()
 		get_tree().current_scene.add_child(ghost)
 		ghost.global_position = self.global_position
+		emit_signal("ghost_summoned", ghost)
