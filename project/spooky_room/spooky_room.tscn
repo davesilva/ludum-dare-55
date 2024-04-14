@@ -5,6 +5,7 @@
 [ext_resource path="res://project/spooky_room/bathroom/bathroom_clean.png" type="Texture" id=3]
 [ext_resource path="res://project/spooky_room/bathroom/bathroom_messy1.png" type="Texture" id=4]
 [ext_resource path="res://project/spooky_room/bathroom/bathroom_messy2.png" type="Texture" id=5]
+[ext_resource path="res://project/circle_progress_bar/CircleProgressBar.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 70.5, 51 )
@@ -33,6 +34,22 @@ shape = SubResource( 1 )
 
 [node name="GhostActiveAreaCollisionShape2D" type="CollisionShape2D" parent="GhostActiveArea2D"]
 shape = SubResource( 4 )
+
+[node name="Container" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Container"]
+
+[node name="RuinationMeter" parent="Container/CanvasLayer" instance=ExtResource( 4 )]
+visible = false
+margin_left = -30.0
+margin_top = -30.0
+margin_right = 70.0
+margin_bottom = 70.0
+tint_under = Color( 0, 0, 0, 1 )
+tint_progress = Color( 0.827451, 0, 0, 1 )
 
 [connection signal="body_entered" from="RoomArea2D" to="." method="_on_RoomArea2D_body_entered"]
 [connection signal="body_exited" from="RoomArea2D" to="." method="_on_RoomArea2D_body_exited"]

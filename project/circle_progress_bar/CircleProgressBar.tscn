@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/basic_2d_assets/polygons/circle/circle_heavy.png" type="Texture" id=1]
+
+[node name="CircleProgressBar" type="TextureProgress"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 1 )
+fill_mode = 4

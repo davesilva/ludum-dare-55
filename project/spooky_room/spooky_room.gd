@@ -18,6 +18,8 @@ export var dirtiness := 0.0
 enum ROOM_STATE {CLEAN, DIRTY, DIRTIER, RUINED}
 onready var sprite = $Sprite
 onready var room_collision_shape_2d = $RoomArea2D/RoomCollisionShape2D
+onready var canvas_layer = $Container/CanvasLayer
+onready var ruination_meter = $Container/CanvasLayer/RuinationMeter
 
 var room_info: SpookyRoomInfo
 var contains_player: bool = false
@@ -46,17 +48,21 @@ func _ready():
 		roomHeight = sprite.texture.get_height()
 	room_info = SpookyRoomInfo.new(self.global_position)
 	room_collision_shape_2d.shape.set_extents(Vector2(roomWidth/2.0, roomHeight/2.0))
+	canvas_layer.offset.x = self.global_position[0]
+	canvas_layer.offset.y = self.global_position[1]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	# TODO: Remove this
-	if Input.is_action_just_pressed("ui_up") and dirtiness > 0:
-		dirtiness -= processSpeedInSeconds/10.0
-	elif Input.is_action_just_pressed("ui_down") and dirtiness < processSpeedInSeconds:
-		dirtiness += processSpeedInSeconds/10.0
-		
 	if roomHasTask:
 		# NOTE: This can be simplified a lot if we only have one ghost
+		var prev_dirtiness = dirtiness
+
+		# TODO: Remove this
+		if Input.is_action_just_pressed("ui_up") and dirtiness > 0:
+			dirtiness -= processSpeedInSeconds/10.0
+		elif Input.is_action_just_pressed("ui_down") and dirtiness < processSpeedInSeconds:
+			dirtiness += processSpeedInSeconds/10.0
+
 		var helpful_ghosts = []
 		var naughty_ghosts = []
 		for ghost in present_ghosts:
@@ -77,15 +83,27 @@ func _process(delta):
 		elif dirtiness < 0:
 			dirtiness = 0
 
-		match dirtinessToState(dirtiness):
-			ROOM_STATE.CLEAN:
-				sprite.texture = cleanImage
-			ROOM_STATE.DIRTY:
-				sprite.texture = dirtyImage
-			ROOM_STATE.DIRTIER:
-				sprite.texture = dirtierImage
-			ROOM_STATE.RUINED:
-				sprite.texture = ruinedImage
+		# If dirtiness changes, update graphics and progress
+		if dirtiness != prev_dirtiness:
+			update_progress()
+
+			match dirtinessToState(dirtiness):
+				ROOM_STATE.CLEAN:
+					sprite.texture = cleanImage
+				ROOM_STATE.DIRTY:
+					sprite.texture = dirtyImage
+				ROOM_STATE.DIRTIER:
+					sprite.texture = dirtierImage
+				ROOM_STATE.RUINED:
+					sprite.texture = ruinedImage
+
+func update_progress():
+	var progress = (dirtiness/processSpeedInSeconds)*100
+	ruination_meter.value = progress
+	if ruination_meter.value == 0:
+		ruination_meter.visible = false
+	else:
+		ruination_meter.visible = true
 
 func _on_RoomArea2D_body_entered(body):
 	if body.is_in_group(Constants.GROUP_PLAYER):
