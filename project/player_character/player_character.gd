@@ -5,19 +5,18 @@ enum PlayerActions {
 	NONE,
 	SUMMON,
 	STUDY, 
-	COMMAND
+	COMMAND,
+	CLIMB_STAIRS
 }
 
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var sprite: Sprite = $Sprite
 onready var movement := $Movement as MovementComponent2D
 onready var summoning_power := $SummoningPower as GhostSummonerComponent
-onready var door_exit = Vector2.ZERO
-onready var can_travel = false
 onready var available_action = PlayerActions.NONE setget action_setter
 onready var current_room_info = SpookyRoomInfo
 onready var ghost_director = $GhostDirector
-
+onready var stairs_target = null
 
 func action_setter(new_value: int):
 	available_action = new_value
@@ -33,9 +32,8 @@ func _ready():
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("primary_action"):
-		if can_travel:
-			position = door_exit
-			can_travel = false
+		if available_action == PlayerActions.CLIMB_STAIRS:
+			GlobalSignals.emit_signal("player_takes_stairs", self.stairs_target, self)
 		elif available_action != PlayerActions.NONE:
 			_execute_action()
 			
