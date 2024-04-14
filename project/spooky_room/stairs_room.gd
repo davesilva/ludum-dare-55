@@ -11,16 +11,19 @@ func _ready():
 func _on_RoomArea2D_body_entered(body):
 	._on_RoomArea2D_body_entered(body)
 	var other_room = get_node(target_room_path) as Node2D
-	var player = body as PlayerCharacter
-	player.available_action = PlayerCharacter.PlayerActions.CLIMB_STAIRS
-	player.stairs_target = other_room
+	if body.is_in_group(Constants.GROUP_PLAYER):
+		var player = body as PlayerCharacter
+		player.available_action = PlayerCharacter.PlayerActions.CLIMB_STAIRS
+		player.stairs_target = other_room
 	
 func _on_RoomArea2D_body_exited(body):
 	._on_RoomArea2D_body_exited(body)
+	var other_room = get_node(target_room_path) as Node2D
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		var player = body as PlayerCharacter
-		player.stairs_target = null
-		player.available_action = PlayerCharacter.PlayerActions.NONE
+		if player.available_action == PlayerCharacter.PlayerActions.CLIMB_STAIRS && player.stairs_target == other_room:
+			player.stairs_target = null
+			player.available_action = PlayerCharacter.PlayerActions.NONE
 		
 func _on_player_takes_stairs(target_room, player):
 	if self != target_room:
