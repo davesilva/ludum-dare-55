@@ -24,7 +24,7 @@ func end_combo() -> void:
 
 func generate_combo_sequence() -> Array:
 	var arr = []
-	for i in range(1, 5):
+	for _i in range(1, 5):
 		arr.append(key_pool[randi() % key_pool.size()])
 		
 	return arr

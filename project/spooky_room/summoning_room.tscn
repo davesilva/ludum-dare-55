@@ -9,6 +9,3 @@ cleanImage = null
 dirtyImage = null
 roomWidth = 0
 roomHeight = 0
-
-[connection signal="body_entered" from="RoomArea2D" to="." method="_on_RoomArea2D_body_entered"]
-[connection signal="body_exited" from="RoomArea2D" to="." method="_on_RoomArea2D_body_exited"]

@@ -10,6 +10,5 @@ func _ready():
 	speed = Vector2(rng.randf_range(-100,100), rng.randf_range(-100,100))
 
 	
-func _physics_process(delta):
-
-	move_and_slide(speed)
+func _physics_process(_delta):
+	var _result = move_and_slide(speed)

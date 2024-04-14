@@ -11,13 +11,12 @@ export var roomHeight: int
 export var processSpeedInSeconds: int = 5
 
 # These ones are generic
-export var dirtiness := 0.0
+export var dirtiness := 0
 var naughtyLevel := 0
 var niceLevel := 0
 enum ROOM_STATE {CLEAN, DIRTY, RUINED}
 onready var sprite = $Sprite
 onready var room_collision_shape_2d = $RoomArea2D/RoomCollisionShape2D
-onready var floor_collision_shape_2d = $Floor/RigidBody2D/FloorCollisionShape2D
 
 
 # Converts the int to the state (real return type is ROOM_STATE)
@@ -70,7 +69,11 @@ func _on_RoomArea2D_body_entered(body):
 		var ghost = body as Ghost
 		ghost.current_location = self
 
-func _on_RoomArea2D_input_event(viewport, event, shape_idx):
+
+func _on_RoomArea2D_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		GlobalSignals.emit_signal("room_clicked", self)
 
+
+func _on_RoomArea2D_body_exited(_body):
+	pass

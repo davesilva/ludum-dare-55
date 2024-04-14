@@ -400,8 +400,13 @@ config/icon="res://defaults/icon.png"
 
 EventBus="*res://addons/event_bus/event_bus.tscn"
 PresentationServices="*res://addons/presentation/presentation_services.tscn"
-GlobalSignals="*res://project/global_signals.gd"
 Constants="*res://project/autoloads/Constants.tscn"
+GlobalSignals="*res://project/global_signals.gd"
+
+[debug]
+
+gdscript/warnings/unused_signal=false
+gdscript/warnings/return_value_discarded=false
 
 [display]
 
@@ -411,6 +416,10 @@ window/size/height=1080
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/clickable_area_2d/plugin.cfg" )
+
+[global]
+
+unused=false
 
 [gui]
 
