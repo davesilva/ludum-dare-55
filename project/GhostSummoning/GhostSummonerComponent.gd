@@ -21,8 +21,4 @@ func _update_enabled(new_value: bool):
 func _on_KeyComboController_combo_completed(combo):
 	if not is_enabled:
 		return
-		
-
-	var ghost = base_ghost.instance()
-	get_tree().current_scene.add_child(ghost)
-	ghost.global_position = self.global_position
+	GlobalSignals.emit_signal("summoning_completed", base_ghost)

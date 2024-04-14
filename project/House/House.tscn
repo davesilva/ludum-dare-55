@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://project/spooky_room/spooky_room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://project/player_character/player_character_root.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://project/spooky_room/study/study_messy2.png" type="Texture" id=9]
 [ext_resource path="res://project/spooky_room/study/study_messy3.png" type="Texture" id=10]
 [ext_resource path="res://project/spooky_room/dining_room/diningroom_messy2.png" type="Texture" id=11]
+[ext_resource path="res://project/spooky_room/bathroom/bathroom_messy1.png" type="Texture" id=12]
 
 [node name="House" type="Node2D"]
 
@@ -24,6 +25,7 @@ roomWidth = 428
 
 [node name="Bathroom" parent="." instance=ExtResource( 1 )]
 position = Vector2( 577, 104 )
+dirtyImage = ExtResource( 12 )
 roomWidth = 298
 
 [node name="SummoningRoom" parent="." instance=ExtResource( 3 )]
