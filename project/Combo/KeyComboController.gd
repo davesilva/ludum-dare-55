@@ -39,7 +39,7 @@ func end_combo(force_end=false) -> void:
 		sequence_to_match = generate_combo_sequence()
 		combo_h_box_container.add_keys(sequence_to_match)
 		emit_signal("combo_completed", current_combo)
-	else:
+	elif force_end:
 		panel_container.hide	()
 	current_combo = []
 
