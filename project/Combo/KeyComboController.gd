@@ -9,17 +9,18 @@ export(float) var timer_length = 2.0
 export(Array) var key_pool = [KEY_LEFT, KEY_UP, KEY_DOWN, KEY_RIGHT]
 
 
-var comboing_enabled = false
+var comboing_enabled = false 
 var combo_running = false
 var current_combo = []
 
 signal combo_completed(combo)
 
-func end_combo() -> void:
+func end_combo(force_end=false) -> void:
 	timer.stop()
 	combo_running = false
 	combo_h_box_container.clear_keys()
-	emit_signal("combo_completed", current_combo)
+	if not force_end:
+		emit_signal("combo_completed", current_combo)
 	current_combo = []
 
 func generate_combo_sequence() -> Array:
@@ -37,6 +38,6 @@ func _input(event):
 		timer.start(timer_length)
 		current_combo.append(event.scancode)
 		combo_h_box_container.add_key(event.scancode)
-		
+
 func _on_Timer_timeout():
 	end_combo()

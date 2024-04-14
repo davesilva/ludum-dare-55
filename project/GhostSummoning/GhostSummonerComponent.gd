@@ -13,12 +13,15 @@ var combo_dict = {
 func _update_enabled(new_value: bool):
 	is_enabled = new_value
 	key_combo_controller.comboing_enabled = new_value
+	if not new_value:
+		key_combo_controller.end_combo(true)
 
 
 func _on_KeyComboController_combo_completed(combo):
+
 	if not is_enabled:
 		return
-	
+		print("hello")
 	if combo_dict.has(combo):
 		var ghost = combo_dict[combo].instance()
 		get_tree().current_scene.add_child(ghost)
