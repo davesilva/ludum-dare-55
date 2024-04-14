@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/tingle-b.mp3-78e333bd332be7b237d9b06e7ddb5ab9.mp3str"
+
+[deps]
+
+source_file="res://project/audio/sfx/tingle-b.mp3"
+dest_files=[ "res://.import/tingle-b.mp3-78e333bd332be7b237d9b06e7ddb5ab9.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
