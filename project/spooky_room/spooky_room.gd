@@ -58,10 +58,10 @@ func _process(delta):
 		var prev_dirtiness = dirtiness
 
 		# TODO: Remove this
-		if Input.is_action_just_pressed("ui_up") and dirtiness > 0:
-			dirtiness -= processSpeedInSeconds/10.0
-		elif Input.is_action_just_pressed("ui_down") and dirtiness < processSpeedInSeconds:
-			dirtiness += processSpeedInSeconds/10.0
+		#if Input.is_action_just_pressed("ui_up") and dirtiness > 0:
+		#	dirtiness -= processSpeedInSeconds/10.0
+		#elif Input.is_action_just_pressed("ui_down") and dirtiness < processSpeedInSeconds:
+		#	dirtiness += processSpeedInSeconds/10.0
 
 		var helpful_ghosts = []
 		var naughty_ghosts = []
@@ -90,6 +90,7 @@ func _process(delta):
 
 			match dirtinessToState(dirtiness):
 				ROOM_STATE.CLEAN:
+					$RoomClean.play()
 					sprite.texture = cleanImage
 				ROOM_STATE.DIRTY:
 					sprite.texture = dirtyImage

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://project/spooky_room/bathroom/bathroom_messy3.png" type="Texture" id=1]
 [ext_resource path="res://project/spooky_room/spooky_room.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://project/circle_progress_bar/CircleProgressBar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://project/spooky_room/bathroom/bathroom_messy2.png" type="Texture" id=5]
 [ext_resource path="res://addons/fonts/nk57_monospace.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://project/audio/sfx/ghostie-job-complete.mp3" type="AudioStream" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 70.5, 51 )
@@ -75,6 +76,9 @@ custom_fonts/font = SubResource( 5 )
 text = "DIRTY: "
 align = 1
 valign = 1
+
+[node name="RoomClean" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
 
 [connection signal="body_entered" from="RoomArea2D" to="." method="_on_RoomArea2D_body_entered"]
 [connection signal="body_exited" from="RoomArea2D" to="." method="_on_RoomArea2D_body_exited"]
