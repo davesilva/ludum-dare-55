@@ -12,6 +12,7 @@ cleanImage = ExtResource( 3 )
 dirtyImage = ExtResource( 3 )
 dirtierImage = ExtResource( 3 )
 ruinedImage = ExtResource( 3 )
+roomHasTask = false
 idle_image = ExtResource( 3 )
 active_image = ExtResource( 5 )
 
