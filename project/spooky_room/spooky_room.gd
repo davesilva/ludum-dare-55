@@ -104,7 +104,7 @@ func _process(delta):
 
 			match dirtinessToState(dirtiness):
 				ROOM_STATE.CLEAN:
-					$RoomClean.play()
+					#$RoomClean.play()
 					sprite.texture = cleanImage
 				ROOM_STATE.DIRTY:
 					sprite.texture = dirtyImage
