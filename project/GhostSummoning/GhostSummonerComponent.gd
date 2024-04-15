@@ -24,7 +24,7 @@ func _update_enabled(new_value: bool):
 
 
 
-func _on_KeyComboController_combo_completed(combo):
+func _on_KeyComboController_combo_completed(_combo):
 	if not is_enabled:
 		return
-	GlobalSignals.emit_signal("summoning_completed", base_ghost)
+	GlobalSignals.emit_signal("summoning_completed", true, base_ghost)

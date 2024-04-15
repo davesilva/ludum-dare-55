@@ -31,13 +31,16 @@ func _on_GhostActiveArea2D_area_entered(area):
 
 func _on_GhostActiveArea2D_area_exited(area):
 	if area.is_in_group(Constants.GROUP_GHOST):
-		var ghost = area as Ghost
 		if contains_player:
 			GlobalSignals.emit_signal("player_enable_summoning")
 	._on_GhostActiveArea2D_area_exited(area)
 
-func _on_summoning_completed(ghost_to_summon):
+
+func _on_summoning_completed(success: bool, ghost_to_summon):
 	$Poof.play()
+	if not success:
+		return
+		
 	var ghost = ghost_to_summon.instance()
 	get_tree().current_scene.add_child(ghost)
 	ghost.global_position = self.global_position

@@ -30,7 +30,6 @@ func action_setter(new_value: int):
 func _ready():
 	movement.target = self
 	animation_player.play("idle")
-	GlobalSignals.connect("summoning_completed", self, "_on_summoning_completed")
 	GlobalSignals.connect("player_enable_summoning", self, "enable_summoning")
 	GlobalSignals.connect("player_disable_summoning", self, "disable_summoning")
 	add_to_group(Constants.GROUP_PLAYER)
@@ -45,7 +44,7 @@ func _process(_delta):
 				if summoning_power.is_enabled == false:
 					start_summoning()
 				else:
-					stop_summoning()
+					cancel_summoning()
 			PlayerActions.STUDY:
 				print("study")
 			PlayerActions.COMMAND:
@@ -68,20 +67,17 @@ func _on_velocity_changed(velocity):
 		sprite.flip_h = true
 		animation_player.play("run")
 
-func _on_summoning_completed(_base_ghost):
-	stop_summoning()
-
-func stop_summoning():
+func cancel_summoning():
 	character_tooltip.display_text(Constants.SUMMON_TOOLTIP)
 	summoning_power.is_enabled = false
 	movement.is_enabled = true
 	animation_player.play("idle")
 	sprite.offset.y = 0
-	GlobalSignals.emit_signal("summoning_completed")
+	GlobalSignals.emit_signal("summoning_completed", false, null)
 
 func disable_summoning():
 	# This shouldn't be necessary
-	stop_summoning()
+	cancel_summoning()
 	character_tooltip.clear_text()
 	available_action = PlayerActions.NONE
 
