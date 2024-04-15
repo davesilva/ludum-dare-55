@@ -4,8 +4,7 @@
 [ext_resource path="res://addons/basic_2d_assets/polygons/circle/circle_filled.png" type="Texture" id=2]
 
 [node name="PIP" type="Control"]
-margin_right = 20.0
-margin_bottom = 20.0
+rect_pivot_offset = Vector2( 10, 10 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 

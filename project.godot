@@ -204,6 +204,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://project/Ghost/on_ghost_ui.gd"
 }, {
+"base": "Control",
+"class": "PipContainer",
+"language": "GDScript",
+"path": "res://project/Ghost/pip_container.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "PlayerCharacter",
 "language": "GDScript",
@@ -429,6 +434,7 @@ _global_script_class_icons={
 "MovementComponent2D": "",
 "Normalizer": "",
 "OnGhostUI": "",
+"PipContainer": "",
 "PlayerCharacter": "",
 "PositionFeedback2D": "",
 "QueueFreeFeedback": "",

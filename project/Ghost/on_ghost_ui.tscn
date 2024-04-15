@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://project/Ghost/scare_pip.tscn" type="PackedScene" id=1]
 [ext_resource path="res://project/Ghost/on_ghost_ui.gd" type="Script" id=2]
 [ext_resource path="res://project/Ghost/star_row.tscn" type="PackedScene" id=3]
 [ext_resource path="res://project/Ghost/star_container.gd" type="Script" id=4]
+[ext_resource path="res://project/Ghost/pip_container.gd" type="Script" id=5]
 
 [node name="OnGhostUI" type="Control"]
 anchor_right = 1.0
@@ -50,29 +51,34 @@ margin_top = 34.0
 margin_bottom = 64.0
 
 [node name="PipContainer" type="Control" parent="BottomZone"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-visible = false
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomZone/PipContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+alignment = 1
 
-[node name="PIP" parent="HBoxContainer" instance=ExtResource( 1 )]
-margin_right = 30.0
-margin_bottom = 150.0
+[node name="PIP" parent="BottomZone/PipContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 16.0
+margin_right = 36.0
+margin_bottom = 45.0
 rect_min_size = Vector2( 20, 0 )
+size_flags_horizontal = 1
 
-[node name="PIP2" parent="HBoxContainer" instance=ExtResource( 1 )]
-margin_left = 34.0
-margin_right = 65.0
-margin_bottom = 150.0
+[node name="PIP2" parent="BottomZone/PipContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 40.0
+margin_right = 60.0
+margin_bottom = 45.0
 rect_min_size = Vector2( 20, 0 )
+size_flags_horizontal = 1
 
-[node name="PIP3" parent="HBoxContainer" instance=ExtResource( 1 )]
-margin_left = 69.0
-margin_right = 100.0
-margin_bottom = 150.0
+[node name="PIP3" parent="BottomZone/PipContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 64.0
+margin_right = 84.0
+margin_bottom = 45.0
 rect_min_size = Vector2( 20, 0 )
+size_flags_horizontal = 1
