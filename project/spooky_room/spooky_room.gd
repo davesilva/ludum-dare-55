@@ -55,7 +55,8 @@ func dirtinessToState(c: float) -> int:
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group(Constants.GROUP_ROOM)
-	sprite.texture = cleanImage
+	_set_room_image()
+	update_progress()
 	
 	if not roomWidth:
 		roomWidth = sprite.texture.get_width()
@@ -102,17 +103,7 @@ func _process(delta):
 		# If dirtiness changes, update graphics and progress
 		if dirtiness != prev_dirtiness:
 			update_progress()
-
-			match dirtinessToState(dirtiness):
-				ROOM_STATE.CLEAN:
-					$RoomClean.play()
-					sprite.texture = cleanImage
-				ROOM_STATE.DIRTY:
-					sprite.texture = dirtyImage
-				ROOM_STATE.DIRTIER:
-					sprite.texture = dirtierImage
-				ROOM_STATE.RUINED:
-					sprite.texture = ruinedImage
+			_set_room_image()
 
 			if dirtinessToState(dirtiness) == ROOM_STATE.RUINED:
 				disable_room()
@@ -139,6 +130,16 @@ func update_progress():
 func _sync_room_info():
 	room_info.dirtiness = dirtiness
 
+func _set_room_image():
+	match dirtinessToState(dirtiness):
+		ROOM_STATE.CLEAN:
+			sprite.texture = cleanImage
+		ROOM_STATE.DIRTY:
+			sprite.texture = dirtyImage
+		ROOM_STATE.DIRTIER:
+			sprite.texture = dirtierImage
+		ROOM_STATE.RUINED:
+			sprite.texture = ruinedImage
 
 func _on_RoomArea2D_body_entered(body):
 	if body.is_in_group(Constants.GROUP_PLAYER):
