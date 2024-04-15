@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/neo-tingle.mp3-3a958ab4ba591dc39c0d627c7e2111ec.mp3str"
+
+[deps]
+
+source_file="res://project/audio/sfx/neo-tingle.mp3"
+dest_files=[ "res://.import/neo-tingle.mp3-3a958ab4ba591dc39c0d627c7e2111ec.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

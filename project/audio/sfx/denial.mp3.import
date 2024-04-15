@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/denial.mp3-a13767ddce8432cfc7aebce6459a8352.mp3str"
+
+[deps]
+
+source_file="res://project/audio/sfx/denial.mp3"
+dest_files=[ "res://.import/denial.mp3-a13767ddce8432cfc7aebce6459a8352.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

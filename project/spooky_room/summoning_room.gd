@@ -31,7 +31,6 @@ func _on_GhostActiveArea2D_area_exited(area):
 
 
 func _on_summoning_completed(success: bool, ghost_to_summon):
-	$Poof.play()
 	if not success:
 		return
 		

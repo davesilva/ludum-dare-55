@@ -57,6 +57,7 @@ func _input(event):
 			current_combo.append(event.scancode)
 			if sequence_to_match.hash() == current_combo.hash():
 				print("matched")
+				$ComboSuccessA.play()
 				end_combo(true)
 				return
 			combo_h_box_container.set_key_color(current_idx, Color(0,1,0))
@@ -65,6 +66,7 @@ func _input(event):
 
 
 		else:
+			$ComboFail.play()
 			end_combo()
 
 func _on_Timer_timeout():
