@@ -114,10 +114,16 @@ func _process(delta):
 					sprite.texture = ruinedImage
 
 			if dirtinessToState(dirtiness) == ROOM_STATE.RUINED:
+				disable_room()
 				ward_off_angry_ghosts()
 
 	_update_debug_labels()
 	_sync_room_info()
+
+func disable_room():
+	roomHasTask = false
+	ruination_meter.visible = false
+	sprite.material.set_shader_param("enabled", true)
 
 
 func update_progress():
