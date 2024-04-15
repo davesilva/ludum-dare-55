@@ -16,7 +16,7 @@ func start():
 	
 
 func play():
-	var level_hooks = _get_all_level_hooks()
+	var level_hooks = _get_all_level_hooks()	
 	for hook in level_hooks:
 		if hook is LevelHook:
 			hook.on_level_play(self)
