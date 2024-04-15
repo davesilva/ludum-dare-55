@@ -70,18 +70,19 @@ func _process(delta):
 				helpful_ghosts.append(ghost)
 			elif ghost.is_angry() and ghost.state != Ghost.STATE.TRAVELING:
 				naughty_ghosts.append(ghost)
-		var progress = 0
 		for ghost in helpful_ghosts:
-			progress += ghost.chore_speed
+			dirtiness -= ghost.chore_speed * delta
 		for ghost in naughty_ghosts:
-			progress -= ghost.chore_speed
-		progress = progress * delta
-		dirtiness -= progress
+			dirtiness += ghost.chore_speed * delta
 
 		if dirtiness > processSpeedInSeconds:
 			dirtiness = processSpeedInSeconds
 		elif dirtiness < 0:
 			dirtiness = 0
+			
+		if dirtiness < 0.5 and naughty_ghosts.empty():
+			dirtiness = 0
+			update_progress()
 
 		# If dirtiness changes, update graphics and progress
 		if dirtiness != prev_dirtiness:
@@ -96,10 +97,6 @@ func _process(delta):
 					sprite.texture = dirtierImage
 				ROOM_STATE.RUINED:
 					sprite.texture = ruinedImage
-	
-	if dirtiness < 0.5:
-		dirtiness = 0
-		update_progress()
 					
 	_update_debug_labels()
 	_sync_room_info()
