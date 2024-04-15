@@ -72,6 +72,7 @@ func stop_summoning():
 	movement.is_enabled = true
 	animation_player.play("idle")
 	sprite.offset.y = 0
+	GlobalSignals.emit_signal("summoning_completed")
 
 func disable_summoning():
 	# This shouldn't be necessary
@@ -89,6 +90,7 @@ func start_summoning():
 	sprite.offset.y = -12
 	summoning_power.is_enabled = true
 	movement.is_enabled = false
+	GlobalSignals.emit_signal("summoning_started")
 
 func _on_stairs_target_set(value):
 	stairs_target = value
