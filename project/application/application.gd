@@ -7,6 +7,7 @@ var game_instance: Game
 
 func initialize_game():
 	game_instance = Game.new()
+	add_child(game_instance)
 	
 
 func game() -> Game:

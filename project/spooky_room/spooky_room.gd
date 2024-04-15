@@ -51,6 +51,19 @@ func dirtinessToState(c: float) -> int:
 		return ROOM_STATE.DIRTIER
 	else:
 		return ROOM_STATE.RUINED
+		
+		
+func get_room_state() -> int:
+	return dirtinessToState(dirtiness)
+	
+	
+func is_room_ruined() -> bool:
+	var state = get_room_state()
+	match state:
+		ROOM_STATE.RUINED:
+			return true
+	
+	return false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

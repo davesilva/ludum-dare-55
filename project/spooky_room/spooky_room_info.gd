@@ -36,3 +36,10 @@ func _run_commandable_ghost_check():
 	if _last_command_ghost_state != can_command:
 		emit_signal("can_command_ghost", can_command)
 		_last_command_ghost_state = can_command
+
+func can_be_ruined() -> bool:
+	match room_type:
+		ROOM_TYPE.SPOOKY:
+			return true
+			
+	return false
