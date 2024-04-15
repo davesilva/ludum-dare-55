@@ -38,6 +38,8 @@ func _ready():
 	self.happy_ghost_image = happy_ghost_images[randi() % 4]
 	sprite.texture = happy_ghost_image
 	
+	set_up_floating()
+	
 
 func _process(delta):
 	_evaluate_states(delta)
@@ -160,6 +162,15 @@ func _on_selected():
 
 func _on_unselected():
 	self.selected = false
+	
+
+func set_up_floating():
+	$FloatingWaveSequencer.amplitude += Random.randi_range(-1, 4)
+	$FloatingWaveSequencer.period += Random.randf_range(0,2)
+
+	
+func _on_floating_wave_sequencer_new_value(value):
+	sprite.offset.y = value
 	
 	
 ###############
