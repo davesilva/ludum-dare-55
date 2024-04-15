@@ -18,8 +18,8 @@ func _on_room_clicked(clicked_room: SpookyRoom) -> void:
 					ghost = ghost as Ghost
 					if ghost.is_angry():
 						continue
-					if ghost.state == Ghost.STATE.IDLE or ghost.state == Ghost.STATE.CLEANING:
-						ghost.mood = 50
+					if ghost.state == Ghost.STATE.IDLE or ghost.state == Ghost.STATE.CLEANING or ghost.state == Ghost.STATE.PACIFIED:
+						ghost.set_mood(50)
 						ghost.send_to_location(clicked_room.room_info)
 			else:
 				#This is where you would play a "NO GOOD" sound

@@ -1,7 +1,7 @@
 extends Area2D
 class_name Ghost
 
-enum STATE {RAGING, CLEANING, IDLE, TRAVELING}
+enum STATE {RAGING, CLEANING, IDLE, TRAVELING, PACIFIED}
 
 export (int) var mood = 100
 export (float) var movement_speed = 1.0
@@ -16,7 +16,7 @@ onready var scared_feedback: FeedbackRunner = $ScaredFeedback
 
 var selected = true
 # PRETEND THIS IS A GHOST_STATE
-var state: int = STATE.IDLE
+var state: int = STATE.PACIFIED
 
 var destination_info: SpookyRoomInfo
 var current_location_info: SpookyRoomInfo
@@ -76,13 +76,19 @@ func _evaluate_states(_delta):
 			_evaluate_cleaning()
 		STATE.RAGING:
 			_evaluate_raging()
+		STATE.PACIFIED:
+			_evaluate_pacified()
 		
 
 func _evaluate_idle():
 	if current_location_info and current_location_info.dirtiness > 0:
 		state = STATE.CLEANING
-		return
-	
+	elif current_location_info and current_location_info.contains_player:
+		state = STATE.PACIFIED
+
+func _evaluate_pacified():
+	if current_location_info and not current_location_info.contains_player:
+		state = STATE.IDLE
 
 func _evaluate_traveling():
 	if destination_info == null:
@@ -109,6 +115,8 @@ func _process_state(delta):
 	match state:
 		STATE.IDLE:
 			update_mood(-mood_change_per_second * delta)
+		STATE.PACIFIED:
+			set_mood(50)
 		STATE.TRAVELING:
 			pass
 		STATE.CLEANING:
