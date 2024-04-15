@@ -156,11 +156,13 @@ func send_to_location(send_destination_info: SpookyRoomInfo, force_send = false)
 		look_at(new_position)
 		var tween = create_tween()
 		tween.tween_property(self, "position", new_position, 5)
+		$RunAway.play()
 		yield(tween,"finished")
 		queue_free()
 	else:
 		var tween = create_tween()
 		tween.tween_property(self, "position", destination_info.global_position, duration)
+		[$BooA, $BooB][randi() % 2].play()
 		yield(tween,"finished")
 		self.destination_info = null
 		

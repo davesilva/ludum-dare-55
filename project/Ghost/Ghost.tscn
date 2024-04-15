@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://project/Ghost/art/Ghost_happy.png" type="Texture" id=1]
 [ext_resource path="res://project/Ghost/Ghost.gd" type="Script" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://addons/juice_press_feedback_system/rendering/color_feedback_2d.gd" type="Script" id=8]
 [ext_resource path="res://addons/juice_press_feedback_system/transform/scale_feedback_2d.gd" type="Script" id=9]
 [ext_resource path="res://project/Ghost/scare_pip.tscn" type="PackedScene" id=10]
+[ext_resource path="res://project/audio/sfx/run-away.mp3" type="AudioStream" id=11]
+[ext_resource path="res://project/audio/sfx/boo-b.mp3" type="AudioStream" id=12]
+[ext_resource path="res://project/audio/sfx/boo-a.mp3" type="AudioStream" id=13]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 38.0
@@ -210,5 +213,14 @@ custom_fonts/font = SubResource( 3 )
 text = "MOOD"
 align = 1
 valign = 1
+
+[node name="RunAway" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="BooA" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+
+[node name="BooB" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
 
 [connection signal="new_value" from="FloatingWaveSequencer" to="." method="_on_floating_wave_sequencer_new_value"]

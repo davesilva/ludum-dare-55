@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/run-away.mp3-a441b558eb13860d630d69d8108bb8d5.mp3str"
+
+[deps]
+
+source_file="res://project/audio/sfx/run-away.mp3"
+dest_files=[ "res://.import/run-away.mp3-a441b558eb13860d630d69d8108bb8d5.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
