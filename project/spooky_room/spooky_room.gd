@@ -92,7 +92,7 @@ func _process(delta):
 				ghost.current_room_has_been_cleaned()
 			
 			
-		if dirtiness < processSpeedInSeconds/100 and naughty_ghosts.empty():
+		if dirtiness < processSpeedInSeconds/100.0 and naughty_ghosts.empty():
 			dirtiness = 0
 			update_progress()
 
@@ -168,11 +168,9 @@ func _on_GhostActiveArea2D_area_entered(area):
 	if area.is_in_group(Constants.GROUP_GHOST):
 		var ghost = area as Ghost
 		ghost.current_location_info = room_info
+		present_ghosts.append(ghost)
 		if ghost.is_angry() and contains_player:
 			ward_off_angry_ghosts()
-		else:
-			present_ghosts.append(ghost)
-		
 
 
 func _on_GhostActiveArea2D_area_exited(area):
