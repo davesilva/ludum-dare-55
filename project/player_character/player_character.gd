@@ -21,6 +21,10 @@ onready var character_tooltip = $CharacterTooltip as CharacterTooltip
 
 func action_setter(new_value: int):
 	available_action = new_value
+	if available_action == PlayerActions.SUMMON:
+		character_tooltip.display_text("'W' to begin summoning")
+	else:
+		character_tooltip.clear_text()
 
 
 func _ready():
@@ -36,6 +40,7 @@ func _process(_delta):
 			PlayerActions.CLIMB_STAIRS:
 				GlobalSignals.emit_signal("player_takes_stairs", self.stairs_target, self)
 			PlayerActions.SUMMON:
+				character_tooltip.clear_text()
 				animation_player.play("summon")
 				sprite.offset.y = -12
 				summoning_power.is_enabled = true
@@ -58,10 +63,12 @@ func _on_velocity_changed(velocity):
 		animation_player.play("run")
 
 func _on_summoning_completed(base_ghost):
+	character_tooltip.display_text("'W' to begin summoning")
 	summoning_power.is_enabled = false
 	movement.is_enabled = true
 	animation_player.play("idle")
 	sprite.offset.y = 0
+	
 func _on_stairs_target_set(value):
 	stairs_target = value
 	if value:

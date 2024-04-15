@@ -101,4 +101,3 @@ position = Vector2( -1, 60 )
 
 
 [connection signal="velocity_changed" from="Movement" to="." method="_on_velocity_changed"]
-[connection signal="combo_completed" from="SummoningPower/KeyComboController" to="SummoningPower" method="_on_KeyComboController_combo_completed"]
