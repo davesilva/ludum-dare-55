@@ -31,6 +31,8 @@ func _ready():
 	movement.target = self
 	animation_player.play("idle")
 	GlobalSignals.connect("summoning_completed", self, "_on_summoning_completed")
+	GlobalSignals.connect("player_enable_summoning", self, "enable_summoning")
+	GlobalSignals.connect("player_disable_summoning", self, "disable_summoning")
 	add_to_group(Constants.GROUP_PLAYER)
 
 	
@@ -41,11 +43,7 @@ func _process(_delta):
 				GlobalSignals.emit_signal("player_takes_stairs", self.stairs_target, self)
 			PlayerActions.SUMMON:
 				if summoning_power.is_enabled == false:
-					character_tooltip.clear_text()
-					animation_player.play("summon")
-					sprite.offset.y = -12
-					summoning_power.is_enabled = true
-					movement.is_enabled = false
+					start_summoning()
 				else:
 					stop_summoning()
 			PlayerActions.STUDY:
@@ -65,7 +63,7 @@ func _on_velocity_changed(velocity):
 		sprite.flip_h = true
 		animation_player.play("run")
 
-func _on_summoning_completed(base_ghost):
+func _on_summoning_completed(_base_ghost):
 	stop_summoning()
 
 func stop_summoning():
@@ -74,7 +72,24 @@ func stop_summoning():
 	movement.is_enabled = true
 	animation_player.play("idle")
 	sprite.offset.y = 0
-	
+
+func disable_summoning():
+	# This shouldn't be necessary
+	stop_summoning()
+	character_tooltip.clear_text()
+	available_action = PlayerActions.NONE
+
+func enable_summoning():
+	character_tooltip.display_text("'W' to begin summoning")
+	available_action = PlayerActions.SUMMON
+
+func start_summoning():
+	character_tooltip.clear_text()
+	animation_player.play("summon")
+	sprite.offset.y = -12
+	summoning_power.is_enabled = true
+	movement.is_enabled = false
+
 func _on_stairs_target_set(value):
 	stairs_target = value
 	if value:

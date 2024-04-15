@@ -8,5 +8,3 @@ script = ExtResource( 1 )
 
 [node name="KeyComboController" parent="." instance=ExtResource( 2 )]
 unique_name_in_owner = true
-
-[connection signal="combo_completed" from="KeyComboController" to="." method="_on_KeyComboController_combo_completed"]
