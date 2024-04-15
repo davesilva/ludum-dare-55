@@ -154,8 +154,6 @@ func _on_RoomArea2D_input_event(_viewport, event, _shape_idx):
 
 func _on_RoomArea2D_body_exited(body):
 	if body.is_in_group(Constants.GROUP_PLAYER):
-		var player = body as PlayerCharacter
-		player.current_room_info = room_info
 		contains_player = false
 
 

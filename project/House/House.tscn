@@ -151,7 +151,7 @@ target_room_path = NodePath("../Stairs3A")
 position = Vector2( 1615, 650 )
 
 [node name="AngryGhost" parent="." instance=ExtResource( 23 )]
-position = Vector2( 521, 394 )
+position = Vector2( 365, 394 )
 mood = -100
 
 [node name="AngryGhost2" parent="." instance=ExtResource( 23 )]
