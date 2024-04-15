@@ -26,3 +26,9 @@ static func _get_fresh_random_generator() -> RandomNumberGenerator:
 	var rand = RandomNumberGenerator.new()
 	rand.randomize()
 	return rand
+	
+
+static func random_unit_vector() -> Vector2:
+	var random_x = randf_range(-1, 1)
+	var random_y = randf_range(-1, 1)
+	return Vector2(random_x, random_y)

@@ -7,6 +7,10 @@ export (int) var mood = 100
 export (float) var movement_speed = 1.0
 export (float) var chore_speed = 1.0
 export (float) var mood_change_per_second = 0.3 #is positive or negative depending on state
+export (int) var forced_moves_remaining = 3
+
+onready var run_away_feedback: FeedbackRunner = $RunAwayFeedback
+onready var scared_feedback: FeedbackRunner = $ScaredFeedback
 
 var selected = true
 # PRETEND THIS IS A GHOST_STATE
@@ -107,7 +111,7 @@ func _process_state(delta):
 			update_mood(-mood_change_per_second * delta * 1.2)
 
 
-func send_to_location(send_destination_info: SpookyRoomInfo, force_send=false):
+func send_to_location(send_destination_info: SpookyRoomInfo, force_send = false):
 	if not self.selected or (state == STATE.RAGING and not force_send) or self.destination_info:
 		return
 
@@ -123,11 +127,28 @@ func send_to_location(send_destination_info: SpookyRoomInfo, force_send=false):
 	else:
 		#sprite.scale.x = 1
 		scale_tween.tween_property(self, "scale", Vector2(1,1), .2)
-
-	var tween = create_tween()
-	tween.tween_property(self, "position", destination_info.global_position, duration)
-	yield(tween,"finished")
-	self.destination_info = null
+		
+	if force_send:
+		forced_moves_remaining -= 1
+		scared_feedback.execute_feedbacks()
+		yield(scared_feedback, "all_feedbacks_finished")
+		
+	if not forced_moves_remaining:
+		run_away_feedback.execute_feedbacks()
+		yield(run_away_feedback, "all_feedbacks_finished")
+		var unit_vector = Random.random_unit_vector()
+		var new_position = position + (unit_vector * 10000)
+		look_at(new_position)
+		var tween = create_tween()
+		tween.tween_property(self, "position", new_position, 5)
+		yield(tween,"finished")
+		queue_free()
+	else:
+		var tween = create_tween()
+		tween.tween_property(self, "position", destination_info.global_position, duration)
+		yield(tween,"finished")
+		self.destination_info = null
+		
 
 func is_happy():
 	return self.mood >= 0

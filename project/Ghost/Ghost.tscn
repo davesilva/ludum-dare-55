@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://project/Ghost/art/Ghost_happy.png" type="Texture" id=1]
 [ext_resource path="res://project/Ghost/Ghost.gd" type="Script" id=2]
 [ext_resource path="res://addons/fonts/arial_narrow.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://addons/fonts/nk57_monospace.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://addons/sequencers/float/wave_sequencer.gd" type="Script" id=5]
+[ext_resource path="res://addons/juice_press_feedback_system/feedback_runner.gd" type="Script" id=6]
+[ext_resource path="res://addons/juice_press_feedback_system/transform/rotate_feedback_2d.gd" type="Script" id=7]
+[ext_resource path="res://addons/juice_press_feedback_system/rendering/color_feedback_2d.gd" type="Script" id=8]
+[ext_resource path="res://addons/juice_press_feedback_system/transform/scale_feedback_2d.gd" type="Script" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 38.0
@@ -35,7 +39,116 @@ amplitude = 10.0
 period = 2.0
 horizontal_shift = 20.0
 
+[node name="ScaredFeedback" type="Node" parent="."]
+script = ExtResource( 6 )
+
+[node name="ScaleFeedback" type="Node" parent="ScaredFeedback"]
+script = ExtResource( 9 )
+TargetPath = NodePath("../../Sprite")
+run_time = 0.2
+return_time = 0.2
+value_mode = 2
+scale_change = Vector2( 1.3, 1.3 )
+
+[node name="ColorFeedback" type="Node" parent="ScaredFeedback"]
+script = ExtResource( 8 )
+TargetPath = NodePath("../../Sprite")
+block_until_done = true
+run_time = 0.1
+return_time = 0.1
+color = Color( 1, 0, 0, 1 )
+
+[node name="ColorFeedback2" type="Node" parent="ScaredFeedback"]
+script = ExtResource( 8 )
+TargetPath = NodePath("../../Sprite")
+block_until_done = true
+run_time = 0.1
+return_time = 0.1
+color = Color( 1, 1, 1, 1 )
+
+[node name="ColorFeedback3" type="Node" parent="ScaredFeedback"]
+script = ExtResource( 8 )
+TargetPath = NodePath("../../Sprite")
+block_until_done = true
+run_time = 0.1
+return_time = 0.1
+color = Color( 0.713726, 0.00784314, 1, 1 )
+
+[node name="ColorFeedbackReset" type="Node" parent="ScaredFeedback"]
+script = ExtResource( 8 )
+TargetPath = NodePath("../../Sprite")
+block_until_done = true
+run_time = 0.2
+should_return_to_previous = false
+color = Color( 1, 1, 1, 1 )
+
+[node name="RunAwayFeedback" type="Node" parent="."]
+script = ExtResource( 6 )
+
+[node name="RotRight" type="Node" parent="RunAwayFeedback"]
+script = ExtResource( 7 )
+TargetPath = NodePath("../../Sprite")
+block_until_done = true
+dont_run = null
+run_time = 0.1
+return_time = 0.1
+rotation_change = 30.0
+
+[node name="RotLeft" type="Node" parent="RunAwayFeedback"]
+script = ExtResource( 7 )
+TargetPath = NodePath("../../Sprite")
+block_until_done = true
+dont_run = null
+run_time = 0.1
+return_time = 0.1
+rotation_change = -30.0
+
+[node name="RotRight2" type="Node" parent="RunAwayFeedback"]
+script = ExtResource( 7 )
+TargetPath = NodePath("../../Sprite")
+block_until_done = true
+dont_run = null
+run_time = 0.1
+return_time = 0.1
+rotation_change = 30.0
+
+[node name="RotLeft2" type="Node" parent="RunAwayFeedback"]
+script = ExtResource( 7 )
+TargetPath = NodePath("../../Sprite")
+block_until_done = true
+dont_run = null
+run_time = 0.1
+return_time = 0.1
+rotation_change = -30.0
+
+[node name="RotRight3" type="Node" parent="RunAwayFeedback"]
+script = ExtResource( 7 )
+TargetPath = NodePath("../../Sprite")
+block_until_done = true
+dont_run = null
+run_time = 0.1
+return_time = 0.1
+rotation_change = 30.0
+
+[node name="RotLeft3" type="Node" parent="RunAwayFeedback"]
+script = ExtResource( 7 )
+TargetPath = NodePath("../../Sprite")
+block_until_done = true
+dont_run = null
+run_time = 0.1
+return_time = 0.1
+rotation_change = -30.0
+
+[node name="RotReturn" type="Node" parent="RunAwayFeedback"]
+script = ExtResource( 7 )
+TargetPath = NodePath("../../Sprite")
+block_until_done = true
+dont_run = null
+run_time = 0.1
+should_return_to_previous = false
+
 [node name="Debug" type="Control" parent="."]
+visible = false
 margin_left = -17.0
 margin_top = -68.0
 margin_right = 23.0
