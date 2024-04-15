@@ -30,6 +30,7 @@ tracks/0/keys = {
 "update": 0,
 "values": [ ExtResource( 2 ) ]
 }
+[ext_resource path="res://project/player_character/CharacterTooltip.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -127,6 +128,8 @@ position = Vector2( -1, 60 )
 
 [node name="GhostDirector" parent="." instance=ExtResource( 11 )]
 
+[node name="CharacterTooltip" parent="." instance=ExtResource( 12 )]
+position = Vector2( -1, 60 )
 [node name="FeetIndicator" type="Area2D" parent="."]
 
 [node name="FeetIndicatorCollisionShape2D" type="CollisionShape2D" parent="FeetIndicator"]

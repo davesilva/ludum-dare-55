@@ -16,7 +16,8 @@ onready var summoning_power := $SummoningPower as GhostSummonerComponent
 onready var available_action = PlayerActions.NONE setget action_setter
 onready var current_room_info = SpookyRoomInfo
 onready var ghost_director = $GhostDirector
-onready var stairs_target = null
+onready var stairs_target = null setget _on_stairs_target_set
+onready var character_tooltip = $CharacterTooltip as CharacterTooltip
 
 func action_setter(new_value: int):
 	available_action = new_value
@@ -61,3 +62,9 @@ func _on_summoning_completed(base_ghost):
 	movement.is_enabled = true
 	animation_player.play("idle")
 	sprite.offset.y = 0
+func _on_stairs_target_set(value):
+	stairs_target = value
+	if value:
+		character_tooltip.display_text("'W' to take stairs")
+	else:
+		character_tooltip.clear_text()

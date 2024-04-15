@@ -8,6 +8,7 @@ var right_arrow = preload("res://project/Combo/arrow-square-right.svg")
 var labels = []
 
 func add_keys(keys) -> void:
+	clear_keys()
 	for key in keys:
 		var 	label = TextureRect.new()
 		label.modulate = Color(1,1,1)
