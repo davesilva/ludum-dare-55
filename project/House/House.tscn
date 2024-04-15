@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://project/spooky_room/spooky_room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://project/player_character/player_character_root.tscn" type="PackedScene" id=2]
@@ -31,6 +31,10 @@
 [ext_resource path="res://project/spooky_room/half_bath/half_bath_messy3.png" type="Texture" id=29]
 [ext_resource path="res://project/spooky_room/half_bath/half_bath_messy1.png" type="Texture" id=30]
 [ext_resource path="res://project/spooky_room/half_bath/half_bath_clean.png" type="Texture" id=31]
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 78, 111 )
 
 [node name="House" type="Node2D"]
 script = ExtResource( 15 )
@@ -192,3 +196,52 @@ mood = -100
 [node name="BG" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
 volume_db = -80.0
+
+[node name="OuterWallCollider1" type="StaticBody2D" parent="."]
+position = Vector2( 53, 863 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OuterWallCollider1"]
+position = Vector2( 78, 0 )
+shape = SubResource( 1 )
+
+[node name="OuterWallCollider2" type="StaticBody2D" parent="."]
+position = Vector2( 209, 641 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OuterWallCollider2"]
+shape = SubResource( 1 )
+
+[node name="OuterWallCollider3" type="StaticBody2D" parent="."]
+position = Vector2( 131, 419 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OuterWallCollider3"]
+shape = SubResource( 1 )
+
+[node name="OuterWallCollider4" type="StaticBody2D" parent="."]
+position = Vector2( 365, 197 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OuterWallCollider4"]
+shape = SubResource( 1 )
+
+[node name="OuterWallCollider5" type="StaticBody2D" parent="."]
+position = Vector2( 1613, 197 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OuterWallCollider5"]
+shape = SubResource( 1 )
+
+[node name="OuterWallCollider6" type="StaticBody2D" parent="."]
+position = Vector2( 1847, 419 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OuterWallCollider6"]
+shape = SubResource( 1 )
+
+[node name="OuterWallCollider7" type="StaticBody2D" parent="."]
+position = Vector2( 1847, 641 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OuterWallCollider7"]
+shape = SubResource( 1 )
+
+[node name="OuterWallCollider8" type="StaticBody2D" parent="."]
+position = Vector2( 1847, 863 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OuterWallCollider8"]
+shape = SubResource( 1 )
