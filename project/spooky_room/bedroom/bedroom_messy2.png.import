@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stairs_up-only.png-1a9202abc38682db36867c34aca7d58f.stex"
+path="res://.import/bedroom_messy2.png-daa4b21cf9ac93eae020b6da1d6eb36a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://project/spooky_room/stairs_up-only.png"
-dest_files=[ "res://.import/stairs_up-only.png-1a9202abc38682db36867c34aca7d58f.stex" ]
+source_file="res://project/spooky_room/bedroom/bedroom_messy2.png"
+dest_files=[ "res://.import/bedroom_messy2.png-daa4b21cf9ac93eae020b6da1d6eb36a.stex" ]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
-flags/mipmaps=true
+flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true
