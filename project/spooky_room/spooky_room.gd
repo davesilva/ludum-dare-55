@@ -73,12 +73,6 @@ func _process(delta):
 		# NOTE: This can be simplified a lot if we only have one ghost
 		var prev_dirtiness = dirtiness
 
-		# TODO: Remove this
-		#if Input.is_action_just_pressed("ui_up") and dirtiness > 0:
-		#	dirtiness -= processSpeedInSeconds/10.0
-		#elif Input.is_action_just_pressed("ui_down") and dirtiness < processSpeedInSeconds:
-		#	dirtiness += processSpeedInSeconds/10.0
-
 		var helpful_ghosts = _get_helpful_ghosts()
 		var naughty_ghosts = _get_angry_ghosts()
 		for ghost in helpful_ghosts:
@@ -99,6 +93,9 @@ func _process(delta):
 		if dirtiness != prev_dirtiness:
 			update_progress()
 			_set_room_image()
+			
+			if dirtiness == 0:
+				$RoomClean.play()
 
 			if dirtinessToState(dirtiness) == ROOM_STATE.RUINED:
 				disable_room()
@@ -111,6 +108,7 @@ func disable_room():
 	roomHasTask = false
 	ruination_meter.visible = false
 	sprite.material.set_shader_param("enabled", true)
+	$DeadRoom.play()
 
 
 func update_progress():
