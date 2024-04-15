@@ -24,6 +24,7 @@ onready var current_room_info = SpookyRoomInfo
 onready var ghost_director = $GhostDirector
 onready var stairs_target = null setget _on_stairs_target_set
 onready var character_tooltip = $CharacterTooltip as CharacterTooltip
+onready var collision_shape_2d = $CollisionShape2D
 onready var state = PlayerState.NORMAL
 
 func action_setter(new_value: int):
@@ -71,9 +72,11 @@ func _on_velocity_changed(velocity):
 		return
 	if velocity.x > 1.0: 
 		sprite.flip_h = false
+		collision_shape_2d.position.x = 20
 		animation_player.play("run")
 	elif velocity.x < 1.0:
 		sprite.flip_h = true
+		collision_shape_2d.position.x = -40
 		animation_player.play("run")
 
 func cancel_summoning():

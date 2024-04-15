@@ -59,6 +59,7 @@ cleanImage = ExtResource( 4 )
 dirtyImage = ExtResource( 5 )
 dirtierImage = ExtResource( 11 )
 ruinedImage = ExtResource( 7 )
+roomWidth = 428
 
 [node name="Bedroom" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1145, 838 )
@@ -88,6 +89,11 @@ position = Vector2( 833, 394 )
 dirtyImage = ExtResource( 12 )
 roomWidth = 298
 
+[node name="Bathroom3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1145, 172 )
+dirtyImage = ExtResource( 12 )
+roomWidth = 298
+
 [node name="Bedroom3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1613, 616 )
 cleanImage = ExtResource( 20 )
@@ -110,7 +116,14 @@ dirtierImage = ExtResource( 21 )
 ruinedImage = ExtResource( 18 )
 
 [node name="Bedroom6" parent="." instance=ExtResource( 1 )]
-position = Vector2( 521, 394 )
+position = Vector2( 365, 394 )
+cleanImage = ExtResource( 20 )
+dirtyImage = ExtResource( 19 )
+dirtierImage = ExtResource( 21 )
+ruinedImage = ExtResource( 18 )
+
+[node name="Bedroom7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 833, 172 )
 cleanImage = ExtResource( 20 )
 dirtyImage = ExtResource( 19 )
 dirtierImage = ExtResource( 21 )
@@ -125,6 +138,15 @@ position = Vector2( 1379, 394 )
 cleanImage = ExtResource( 22 )
 target_room_path = NodePath("../Stairs2A")
 
+[node name="Stairs3A" parent="." instance=ExtResource( 13 )]
+position = Vector2( 599, 394 )
+target_room_path = NodePath("../Stairs3B")
+
+[node name="Stairs3B" parent="." instance=ExtResource( 13 )]
+position = Vector2( 599, 172 )
+cleanImage = ExtResource( 22 )
+target_room_path = NodePath("../Stairs3A")
+
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1615, 650 )
 
@@ -138,4 +160,4 @@ mood = -100
 
 [node name="BG" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
-volume_db = -7.866
+volume_db = -80.0

@@ -83,9 +83,8 @@ tracks/0/keys = {
 "values": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 14 ) ]
 }
 
-[sub_resource type="CapsuleShape2D" id=3]
-radius = 16.0
-height = 28.0
+[sub_resource type="CircleShape2D" id=8]
+radius = 1.0
 
 [sub_resource type="RectangleShape2D" id=7]
 
@@ -100,10 +99,12 @@ anims/run = SubResource( 4 )
 anims/summon = SubResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -10, 0 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+position = Vector2( 20, 0 )
+shape = SubResource( 8 )
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -112,7 +113,7 @@ direction_calculator_path = NodePath("WASD")
 
 [node name="SpeedController" type="Node" parent="Movement"]
 script = ExtResource( 3 )
-top_speed = 1000.0
+top_speed = 500.0
 acceleration = 800.0
 deacceleration = 1200.0
 
