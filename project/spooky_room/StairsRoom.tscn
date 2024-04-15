@@ -1,9 +1,29 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://project/spooky_room/stairs_room.gd" type="Script" id=1]
 [ext_resource path="res://project/spooky_room/spooky_room.tscn" type="PackedScene" id=2]
 [ext_resource path="res://project/spooky_room/stairs/stairs_up-only.png" type="Texture" id=3]
 [ext_resource path="res://project/spooky_room/stairs/stairs_up-down.png" type="Texture" id=4]
+[ext_resource path="res://project/spooky_room/black_and_white.tres" type="Shader" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
+extents = Vector2( 70.5, 51 )
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/enabled = false
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.00540541, 0.992793, 1 )
+colors = PoolColorArray( 1, 0.945648, 0.539112, 0.654902, 1, 0.996078, 0.976471, 0, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=4]
+gradient = SubResource( 3 )
+fill = 1
+fill_from = Vector2( 0.497917, 0.497156 )
+fill_to = Vector2( 1, 1 )
 
 [node name="StairsRoom" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
@@ -15,5 +35,15 @@ roomWidth = 143
 roomHasTask = false
 target_room_path = NodePath("")
 
+[node name="RoomCollisionShape2D" parent="RoomArea2D" index="0"]
+shape = SubResource( 1 )
+
 [node name="Sprite" parent="." index="1"]
+material = SubResource( 2 )
 texture = ExtResource( 4 )
+
+[node name="WhiteFlash" type="Sprite" parent="." index="7"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 2.5, -2 )
+scale = Vector2( 1.79688, 2.28125 )
+texture = SubResource( 4 )
