@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://project/player_character/player_character.gd" type="Script" id=1]
 [ext_resource path="res://project/player_character/art/idle.png" type="Texture" id=2]
@@ -17,6 +17,9 @@
 [ext_resource path="res://project/player_character/art/summon_3.png" type="Texture" id=15]
 [ext_resource path="res://project/audio/sfx/player-footstep-a.mp3" type="AudioStream" id=16]
 [ext_resource path="res://project/player_character/CharacterTooltip.tscn" type="PackedScene" id=17]
+[ext_resource path="res://project/audio/sfx/player-footstep-b.mp3" type="AudioStream" id=18]
+[ext_resource path="res://project/audio/sfx/player-footstep-c.mp3" type="AudioStream" id=19]
+[ext_resource path="res://project/audio/sfx/player-footstep-d.mp3" type="AudioStream" id=20]
 
 [sub_resource type="Animation" id=6]
 length = 0.001
@@ -64,6 +67,20 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 8 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_footsteps_in_the_dark"
+} ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -130,8 +147,17 @@ position = Vector2( -1, 60 )
 
 [node name="GhostDirector" parent="." instance=ExtResource( 11 )]
 
-[node name="Footstep" type="AudioStreamPlayer" parent="."]
+[node name="FootstepA" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
+
+[node name="FootstepB" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+
+[node name="FootstepC" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+
+[node name="FootstepD" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
 
 [node name="CharacterTooltip" parent="." instance=ExtResource( 17 )]
 position = Vector2( -1, 60 )

@@ -114,3 +114,11 @@ func _on_stairs_target_set(value):
 		character_tooltip.display_text(Constants.STAIRS_TOOLTIP)
 	else:
 		character_tooltip.clear_text()
+		
+func play_footsteps_in_the_dark():
+	var footstep = [
+		$FootstepA,
+		$FootstepB,
+		$FootstepC,
+		$FootstepD
+	][randi() % 4].play()

@@ -11,5 +11,5 @@ dest_files=[ "res://.import/player-footstep-b.mp3-9e5735dba854b5824b3be81e7d6200
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
