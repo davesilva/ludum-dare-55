@@ -11,5 +11,5 @@ dest_files=[ "res://.import/ghostie-job-complete.mp3-468e93d354d7a16358e413382e1
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

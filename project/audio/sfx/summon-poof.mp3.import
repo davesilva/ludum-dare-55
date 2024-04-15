@@ -11,5 +11,5 @@ dest_files=[ "res://.import/summon-poof.mp3-fb710530c97f0e0d3a3deb9ee1eaa026.mp3
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

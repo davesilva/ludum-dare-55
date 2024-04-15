@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://project/player_character/player_character.gd" type="Script" id=1]
 [ext_resource path="res://project/player_character/art/idle.png" type="Texture" id=2]
@@ -11,7 +11,11 @@
 [ext_resource path="res://project/player_character/art/run_1.png" type="Texture" id=9]
 [ext_resource path="res://project/player_character/art/run_2.png" type="Texture" id=10]
 [ext_resource path="res://project/player_character/GhostDirector.tscn" type="PackedScene" id=11]
-[ext_resource path="res://project/player_character/CharacterTooltip.tscn" type="PackedScene" id=12]
+[ext_resource path="res://project/player_character/art/summon_1.png" type="Texture" id=12]
+[ext_resource path="res://project/player_character/art/summon_2.png" type="Texture" id=13]
+[ext_resource path="res://project/player_character/art/summon_4.png" type="Texture" id=14]
+[ext_resource path="res://project/player_character/art/summon_3.png" type="Texture" id=15]
+[ext_resource path="res://project/audio/sfx/player-footstep-a.mp3" type="AudioStream" id=16]
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -88,8 +92,12 @@ position = Vector2( -1, 60 )
 
 [node name="GhostDirector" parent="." instance=ExtResource( 11 )]
 
+[node name="Footstep" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+
 [node name="CharacterTooltip" parent="." instance=ExtResource( 12 )]
 position = Vector2( -1, 60 )
+
 
 [connection signal="velocity_changed" from="Movement" to="." method="_on_velocity_changed"]
 [connection signal="combo_completed" from="SummoningPower/KeyComboController" to="SummoningPower" method="_on_KeyComboController_combo_completed"]

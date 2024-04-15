@@ -21,6 +21,7 @@ func _on_RoomArea2D_body_exited(body):
 
 
 func _on_summoning_completed(ghost_to_summon):
+	$Poof.play()
 	var ghost = ghost_to_summon.instance()
 	get_tree().current_scene.add_child(ghost)
 	ghost.global_position = self.global_position

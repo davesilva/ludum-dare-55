@@ -11,5 +11,5 @@ dest_files=[ "res://.import/tingle-a.mp3-4708fec40527ff99f259492ca870da54.mp3str
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
