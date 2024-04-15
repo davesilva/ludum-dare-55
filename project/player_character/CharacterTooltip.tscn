@@ -10,6 +10,7 @@ script = ExtResource( 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
+rect_scale = Vector2( 2, 2 )
 
 [node name="PanelContainer" type="PanelContainer" parent="Control"]
 visible = false

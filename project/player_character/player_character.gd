@@ -22,7 +22,7 @@ onready var character_tooltip = $CharacterTooltip as CharacterTooltip
 func action_setter(new_value: int):
 	available_action = new_value
 	if available_action == PlayerActions.SUMMON:
-		character_tooltip.display_text("'W' to begin summoning")
+		character_tooltip.display_text(Constants.SUMMON_TOOLTIP)
 	else:
 		character_tooltip.clear_text()
 
@@ -50,7 +50,12 @@ func _process(_delta):
 				print("study")
 			PlayerActions.COMMAND:
 				print("command")
-			
+	elif Input.is_action_just_pressed("primary_action"):
+			match available_action:
+				PlayerActions.CLIMB_STAIRS:
+					GlobalSignals.emit_signal("player_takes_stairs", self.stairs_target, self)
+
+
 
 func _on_velocity_changed(velocity):
 	if abs(velocity.x) < 1.0:
@@ -67,7 +72,7 @@ func _on_summoning_completed(_base_ghost):
 	stop_summoning()
 
 func stop_summoning():
-	character_tooltip.display_text("'Space' to begin summoning")
+	character_tooltip.display_text(Constants.SUMMON_TOOLTIP)
 	summoning_power.is_enabled = false
 	movement.is_enabled = true
 	animation_player.play("idle")
@@ -81,7 +86,7 @@ func disable_summoning():
 	available_action = PlayerActions.NONE
 
 func enable_summoning():
-	character_tooltip.display_text("'W' to begin summoning")
+	character_tooltip.display_text(Constants.SUMMON_TOOLTIP)
 	available_action = PlayerActions.SUMMON
 
 func start_summoning():
@@ -95,6 +100,6 @@ func start_summoning():
 func _on_stairs_target_set(value):
 	stairs_target = value
 	if value:
-		character_tooltip.display_text("'Space' to take stairs")
+		character_tooltip.display_text(Constants.STAIRS_TOOLTIP)
 	else:
 		character_tooltip.clear_text()
