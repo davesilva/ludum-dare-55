@@ -26,6 +26,20 @@ var contains_player: bool = false
 # NOTE: Change this if we commit for sure to just one ghost
 var present_ghosts: Array = []
 
+
+func ward_off_angry_ghosts() -> void:
+	# if the player enters the same room as a rager, it should move to a new room to wreck
+	#  if there are none available destroy him
+	for ghost in present_ghosts:
+		if ghost.state == Ghost.STATE.RAGING:
+			var rooms: Array = get_tree().get_nodes_in_group(Constants.GROUP_ROOM)
+			rooms.shuffle()
+			for room in rooms:
+				if not self == room and room.roomHasTask and not dirtinessToState(room.dirtiness) == ROOM_STATE.RUINED:
+					ghost.send_to_location(room.room_info, true)
+					return
+			ghost.queue_free()
+
 # Converts the int to the state (real return type is ROOM_STATE)
 func dirtinessToState(c: float) -> int:
 	if c < processSpeedInSeconds/3.0:
@@ -121,6 +135,7 @@ func _on_RoomArea2D_body_entered(body):
 		var player = body as PlayerCharacter
 		player.current_room_info = room_info
 		contains_player = true
+		ward_off_angry_ghosts()
 
 
 func _on_RoomArea2D_input_event(_viewport, event, _shape_idx):
@@ -140,6 +155,7 @@ func _on_GhostActiveArea2D_area_entered(area):
 		var ghost = area as Ghost
 		ghost.current_location_info = room_info
 		present_ghosts.append(ghost)
+		
 
 
 func _on_GhostActiveArea2D_area_exited(area):

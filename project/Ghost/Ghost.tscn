@@ -20,6 +20,7 @@ font_data = ExtResource( 4 )
 [node name="Ghost" type="Area2D"]
 script = ExtResource( 2 )
 movement_speed = 3.0
+mood_change_per_second = 20.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

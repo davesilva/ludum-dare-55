@@ -86,7 +86,7 @@ func _evaluate_cleaning():
 
 func _evaluate_raging():
 	if current_location_info and current_location_info.dirtiness > 0:
-		state = STATE.CLEANING
+		state = STATE.RAGING
 		return
 	
 	if is_happy():
@@ -107,8 +107,8 @@ func _process_state(delta):
 			update_mood(-mood_change_per_second * delta * 1.2)
 
 
-func send_to_location(send_destination_info: SpookyRoomInfo):
-	if not self.selected or state == STATE.RAGING:
+func send_to_location(send_destination_info: SpookyRoomInfo, force_send=false):
+	if not self.selected or (state == STATE.RAGING and not force_send):
 		return
 
 	self.destination_info = send_destination_info
