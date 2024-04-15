@@ -37,7 +37,7 @@ func _ready():
 
 	
 func _process(_delta):
-	if Input.is_action_just_pressed("primary_action"):
+	if Input.is_action_just_pressed("ui_accept"):
 		match available_action:
 			PlayerActions.CLIMB_STAIRS:
 				GlobalSignals.emit_signal("player_takes_stairs", self.stairs_target, self)
@@ -67,7 +67,7 @@ func _on_summoning_completed(_base_ghost):
 	stop_summoning()
 
 func stop_summoning():
-	character_tooltip.display_text("'W' to begin summoning")
+	character_tooltip.display_text("'Space' to begin summoning")
 	summoning_power.is_enabled = false
 	movement.is_enabled = true
 	animation_player.play("idle")
@@ -95,6 +95,6 @@ func start_summoning():
 func _on_stairs_target_set(value):
 	stairs_target = value
 	if value:
-		character_tooltip.display_text("'W' to take stairs")
+		character_tooltip.display_text("'Space' to take stairs")
 	else:
 		character_tooltip.clear_text()

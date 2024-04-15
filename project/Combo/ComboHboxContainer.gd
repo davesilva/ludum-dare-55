@@ -13,10 +13,10 @@ func add_keys(keys) -> void:
 		var 	label = TextureRect.new()
 		label.modulate = Color(1,1,1)
 		match key:
-			KEY_UP: 	label.texture = up_arrow
-			KEY_DOWN: label.texture = down_arrow
-			KEY_LEFT: label.texture = left_arrow
-			KEY_RIGHT: label.texture = right_arrow
+			KEY_W: label.texture = up_arrow
+			KEY_S: label.texture = down_arrow
+			KEY_A: label.texture = left_arrow
+			KEY_D: label.texture = right_arrow
 			_: 
 				label = Label.new()
 				label.text = key

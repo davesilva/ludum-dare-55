@@ -6,7 +6,7 @@ onready var combo_h_box_container = $Control/PanelContainer/VBoxContainer/ComboH
 onready var panel_container = $Control/PanelContainer
 
 export(float) var timer_length = 2.0
-export(Array) var key_pool = [KEY_LEFT, KEY_UP, KEY_DOWN, KEY_RIGHT]
+export(Array) var key_pool = [KEY_W, KEY_A, KEY_S, KEY_D]
 
 
 var comboing_enabled = false setget _on_comboing_enabled_set
