@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/intro-spooku.mp3-dfad0f7076ed3890fdb5a6195f4fa244.mp3str"
+
+[deps]
+
+source_file="res://project/audio/music/intro-spooku.mp3"
+dest_files=[ "res://.import/intro-spooku.mp3-dfad0f7076ed3890fdb5a6195f4fa244.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
