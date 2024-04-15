@@ -49,7 +49,7 @@ func _process(delta):
 	
 func _evaluate_states(_delta):
 	if state != STATE.RAGING and is_angry():
-		set_mood(-10)
+		#set_mood(-10)
 		state = STATE.RAGING
 		return
 	
