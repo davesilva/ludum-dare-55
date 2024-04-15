@@ -13,6 +13,7 @@
 [ext_resource path="res://project/audio/sfx/run-away.mp3" type="AudioStream" id=11]
 [ext_resource path="res://project/audio/sfx/boo-b.mp3" type="AudioStream" id=12]
 [ext_resource path="res://project/audio/sfx/boo-a.mp3" type="AudioStream" id=13]
+[ext_resource path="res://project/Ghost/on_ghost_ui.tscn" type="PackedScene" id=14]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 38.0
@@ -152,33 +153,11 @@ dont_run = null
 run_time = 0.1
 should_return_to_previous = false
 
-[node name="OnGhostUI" type="Control" parent="."]
-margin_left = -47.0
-margin_top = -51.0
-margin_right = 13.0
-margin_bottom = -31.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="OnGhostUI"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="PIP" parent="OnGhostUI/HBoxContainer" instance=ExtResource( 10 )]
-rect_min_size = Vector2( 20, 0 )
-size_flags_horizontal = 1
-
-[node name="PIP2" parent="OnGhostUI/HBoxContainer" instance=ExtResource( 10 )]
-margin_left = 24.0
-margin_right = 44.0
-rect_min_size = Vector2( 20, 0 )
-size_flags_horizontal = 1
-
-[node name="PIP3" parent="OnGhostUI/HBoxContainer" instance=ExtResource( 10 )]
-margin_left = 48.0
-margin_right = 68.0
-rect_min_size = Vector2( 20, 0 )
-size_flags_horizontal = 1
+[node name="OnGhostUI" parent="." instance=ExtResource( 14 )]
+margin_top = -100.0
+margin_right = 50.0
+margin_bottom = 150.0
+rect_pivot_offset = Vector2( 50, 100 )
 
 [node name="Debug" type="Control" parent="."]
 visible = false

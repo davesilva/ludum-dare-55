@@ -199,6 +199,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/utlities/normalizer.gd"
 }, {
+"base": "Control",
+"class": "OnGhostUI",
+"language": "GDScript",
+"path": "res://project/Ghost/on_ghost_ui.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "PlayerCharacter",
 "language": "GDScript",
@@ -293,6 +298,16 @@ _global_script_classes=[ {
 "class": "StairsRoom",
 "language": "GDScript",
 "path": "res://project/spooky_room/stairs_room.gd"
+}, {
+"base": "Control",
+"class": "StarContainer",
+"language": "GDScript",
+"path": "res://project/Ghost/star_container.gd"
+}, {
+"base": "Control",
+"class": "StarRow",
+"language": "GDScript",
+"path": "res://project/Ghost/star_row.gd"
 }, {
 "base": "Node",
 "class": "State",
@@ -413,6 +428,7 @@ _global_script_class_icons={
 "MouseListener": "",
 "MovementComponent2D": "",
 "Normalizer": "",
+"OnGhostUI": "",
 "PlayerCharacter": "",
 "PositionFeedback2D": "",
 "QueueFreeFeedback": "",
@@ -432,6 +448,8 @@ _global_script_class_icons={
 "SpookyRoom": "",
 "SpookyRoomInfo": "",
 "StairsRoom": "",
+"StarContainer": "",
+"StarRow": "",
 "State": "",
 "StateMachine": "",
 "SummoningCircle": "",

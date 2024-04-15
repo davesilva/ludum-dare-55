@@ -85,6 +85,13 @@ func _process(delta):
 		elif dirtiness < 0:
 			dirtiness = 0
 			
+			if prev_dirtiness == 0:
+				return
+			
+			for ghost in helpful_ghosts:
+				ghost.current_room_has_been_cleaned()
+			
+			
 		if dirtiness < processSpeedInSeconds/100 and naughty_ghosts.empty():
 			dirtiness = 0
 			update_progress()
