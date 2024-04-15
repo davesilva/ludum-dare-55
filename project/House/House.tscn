@@ -246,3 +246,7 @@ position = Vector2( 1847, 863 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OuterWallCollider8"]
 shape = SubResource( 1 )
+
+[node name="GhostSpawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
