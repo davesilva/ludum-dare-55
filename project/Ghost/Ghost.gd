@@ -135,11 +135,11 @@ func send_to_location(send_destination_info: SpookyRoomInfo, force_send = false)
 
 	if send_destination_info.global_position.x > self.global_position.x:
 		#sprite.scale.x = -1
-		scale_tween.tween_property(self, "scale", Vector2(-1,1), .2)
+		scale_tween.tween_property(sprite, "scale", Vector2(-1,1), .2)
 	else:
 		#sprite.scale.x = 1
-		scale_tween.tween_property(self, "scale", Vector2(1,1), .2)
-
+		scale_tween.tween_property(sprite, "scale", Vector2(1,1), .2)
+		
 	if force_send:
 		forced_moves_remaining -= 1
 		scared_feedback.execute_feedbacks()
