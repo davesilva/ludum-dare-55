@@ -79,13 +79,8 @@ func _process(delta):
 		#elif Input.is_action_just_pressed("ui_down") and dirtiness < processSpeedInSeconds:
 		#	dirtiness += processSpeedInSeconds/10.0
 
-		var helpful_ghosts = []
-		var naughty_ghosts = []
-		for ghost in present_ghosts:
-			if ghost.is_happy() and ghost.state != Ghost.STATE.TRAVELING:
-				helpful_ghosts.append(ghost)
-			elif ghost.is_angry() and ghost.state != Ghost.STATE.TRAVELING:
-				naughty_ghosts.append(ghost)
+		var helpful_ghosts = _get_helpful_ghosts()
+		var naughty_ghosts = _get_angry_ghosts()
 		for ghost in helpful_ghosts:
 			dirtiness -= ghost.chore_speed * delta
 		for ghost in naughty_ghosts:
@@ -129,6 +124,9 @@ func update_progress():
 	
 func _sync_room_info():
 	room_info.dirtiness = dirtiness
+	room_info.contains_player = contains_player
+	room_info.helpful_ghost_count = _get_helpful_ghosts().size()
+	room_info.naughty_ghost_count = _get_angry_ghosts().size()
 
 func _set_room_image():
 	match dirtinessToState(dirtiness):
@@ -173,6 +171,24 @@ func _on_GhostActiveArea2D_area_exited(area):
 	if area.is_in_group(Constants.GROUP_GHOST):
 		var ghost = area as Ghost
 		present_ghosts.erase(ghost)
+		
+		
+func _get_helpful_ghosts() -> Array:
+	var helpful_ghosts: Array = []
+	for ghost in present_ghosts:
+		if ghost.is_happy() and ghost.state != Ghost.STATE.TRAVELING:
+			helpful_ghosts.append(ghost)
+			
+	return helpful_ghosts
+	
+	
+func _get_angry_ghosts() -> Array:
+	var naughty_ghosts: Array = []
+	for ghost in present_ghosts:
+		if ghost.is_angry() and ghost.state != Ghost.STATE.TRAVELING:
+			naughty_ghosts.append(ghost)
+			
+	return naughty_ghosts
 
 ###############
 #### DEBUG ####

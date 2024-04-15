@@ -20,7 +20,7 @@ onready var sprite: Sprite = $Sprite
 onready var movement := $Movement as MovementComponent2D
 onready var summoning_power := $SummoningPower as GhostSummonerComponent
 onready var available_action = PlayerActions.NONE setget action_setter
-onready var current_room_info = SpookyRoomInfo
+onready var current_room_info = SpookyRoomInfo setget _set_room_info
 onready var ghost_director = $GhostDirector
 onready var stairs_target = null setget _on_stairs_target_set
 onready var character_tooltip = $CharacterTooltip as CharacterTooltip
@@ -33,6 +33,11 @@ func action_setter(new_value: int):
 		character_tooltip.display_text(Constants.SUMMON_TOOLTIP)
 	else:
 		character_tooltip.clear_text()
+
+
+func _set_room_info(room_info: SpookyRoomInfo):
+	if not room_info.is_connected("can_command_ghost", self, "_on_command_status_changed"):
+		room_info.connect("can_command_ghost", self, "_on_command_status_changed")
 
 
 func _ready():
@@ -107,6 +112,12 @@ func start_summoning():
 	summoning_power.is_enabled = true
 	movement.is_enabled = false
 	GlobalSignals.emit_signal("summoning_started")
+	
+	
+func _on_command_status_changed(_value:bool):
+	# can we command a ghost or not
+	pass
+	
 
 func _on_stairs_target_set(value):
 	stairs_target = value
@@ -122,3 +133,4 @@ func play_footsteps_in_the_dark():
 		$FootstepC,
 		$FootstepD
 	][randi() % 4].play()
+

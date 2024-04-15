@@ -16,6 +16,8 @@ func _on_room_clicked(clicked_room: SpookyRoom) -> void:
 			if clicked_room.present_ghosts.empty():
 				for ghost in room.present_ghosts:
 					ghost = ghost as Ghost
+					if ghost.is_angry():
+						continue
 					if ghost.state == Ghost.STATE.IDLE or ghost.state == Ghost.STATE.CLEANING:
 						ghost.mood = 50
 						ghost.send_to_location(clicked_room.room_info)
