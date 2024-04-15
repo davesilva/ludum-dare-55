@@ -31,13 +31,13 @@ func end_combo(force_end=false) -> void:
 	combo_running = false
 	combo_h_box_container.reset_key_colors()
 
-	if not force_end and current_combo.hash() == sequence_to_match.hash():
+	if current_combo.hash() == sequence_to_match.hash():
 		sequence_length = sequence_length + 1
 		combo_h_box_container.clear_keys()
 		sequence_to_match = generate_combo_sequence()
 		combo_h_box_container.add_keys(sequence_to_match)
 		GlobalSignals.emit_signal("combo_completed", current_combo)
-	elif force_end:
+	if force_end:
 		panel_container.hide	()
 	current_combo = []
 
@@ -57,7 +57,7 @@ func _input(event):
 			current_combo.append(event.scancode)
 			if sequence_to_match.hash() == current_combo.hash():
 				print("matched")
-				end_combo()
+				end_combo(true)
 				return
 			combo_h_box_container.set_key_color(current_idx, Color(0,1,0))
 			current_idx = current_idx + 1

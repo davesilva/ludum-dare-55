@@ -40,11 +40,14 @@ func _process(_delta):
 			PlayerActions.CLIMB_STAIRS:
 				GlobalSignals.emit_signal("player_takes_stairs", self.stairs_target, self)
 			PlayerActions.SUMMON:
-				character_tooltip.clear_text()
-				animation_player.play("summon")
-				sprite.offset.y = -12
-				summoning_power.is_enabled = true
-				movement.is_enabled = false
+				if summoning_power.is_enabled == false:
+					character_tooltip.clear_text()
+					animation_player.play("summon")
+					sprite.offset.y = -12
+					summoning_power.is_enabled = true
+					movement.is_enabled = false
+				else:
+					stop_summoning()
 			PlayerActions.STUDY:
 				print("study")
 			PlayerActions.COMMAND:
@@ -64,6 +67,9 @@ func _on_velocity_changed(velocity):
 
 func _on_summoning_completed(base_ghost):
 	character_tooltip.display_text("'W' to begin summoning")
+	stop_summoning()
+
+func stop_summoning():
 	summoning_power.is_enabled = false
 	movement.is_enabled = true
 	animation_player.play("idle")
