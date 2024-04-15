@@ -1,6 +1,9 @@
 extends HBoxContainer
 class_name ComboHBoxContainer
 
+export (bool) var use_custom_rect_size = false
+export (Vector2) var custom_rect_size = Vector2.ZERO
+
 var up_arrow = preload("res://project/Combo/arrow-square-up.svg")
 var down_arrow = preload("res://project/Combo/arrow-square-down.svg")
 var left_arrow = preload("res://project/Combo/arrow-square-left.svg")
@@ -20,6 +23,9 @@ func add_keys(keys) -> void:
 			_: 
 				label = Label.new()
 				label.text = key
+				
+		if use_custom_rect_size:
+			label.rect_size = custom_rect_size
 
 		add_child(label)
 		labels.append(label)

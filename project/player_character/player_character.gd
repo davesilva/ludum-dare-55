@@ -114,9 +114,11 @@ func start_summoning():
 	GlobalSignals.emit_signal("summoning_started")
 	
 	
-func _on_command_status_changed(_value:bool):
-	# can we command a ghost or not
-	pass
+func _on_command_status_changed(can_command: bool):
+	if can_command:
+		character_tooltip.display_text(Constants.COMMAND_TOOLTIP)
+	else:
+		character_tooltip.clear_text()
 	
 
 func _on_stairs_target_set(value):
@@ -133,4 +135,3 @@ func play_footsteps_in_the_dark():
 		$FootstepC,
 		$FootstepD
 	][randi() % 4].play()
-

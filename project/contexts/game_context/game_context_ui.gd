@@ -1,17 +1,22 @@
 extends Control
 class_name GameContextUI
 
+onready var prompt_label = $BottomContainer/PromptLabel
+onready var combo_container = $TopContainer/Control/PanelContainer/VBoxContainer/ComboHBoxContainer
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	GlobalSignals.connect("display_keys", self, "_on_display_keys")
+	GlobalSignals.connect("display_prompt", self, "_on_display_prompt")
+	prompt_label.hide()
+	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_display_keys(keys):
+	combo_container.add_keys(keys)
+	
+	
+func _on_display_prompt(text: String):
+	if text.empty():
+		prompt_label.hide()
+	else:
+		prompt_label.text = text
+		prompt_label.show()

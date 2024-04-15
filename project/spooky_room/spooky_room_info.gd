@@ -1,4 +1,3 @@
-extends Reference
 class_name SpookyRoomInfo
 
 signal can_command_ghost(state)

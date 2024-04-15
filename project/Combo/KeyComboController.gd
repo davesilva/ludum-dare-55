@@ -23,7 +23,9 @@ func _on_comboing_enabled_set(value: bool) -> void:
 		sequence_to_match = generate_combo_sequence()
 		combo_h_box_container.clear_keys()
 		combo_h_box_container.add_keys(sequence_to_match)
+		GlobalSignals.emit_signal("display_keys", sequence_to_match)
 		panel_container.show()
+		
 
 func end_combo(force_end=false) -> void:
 	current_idx = 0
@@ -36,6 +38,7 @@ func end_combo(force_end=false) -> void:
 		combo_h_box_container.clear_keys()
 		sequence_to_match = generate_combo_sequence()
 		combo_h_box_container.add_keys(sequence_to_match)
+		GlobalSignals.emit_signal("display_keys", sequence_to_match)
 		GlobalSignals.emit_signal("combo_completed", current_combo)
 	if force_end:
 		panel_container.hide	()
