@@ -142,7 +142,9 @@ func _sync_room_info():
 func _on_RoomArea2D_body_entered(body):
 	if body.is_in_group(Constants.GROUP_PLAYER):
 		var player = body as PlayerCharacter
+		player.available_action = PlayerCharacter.PlayerActions.NONE
 		player.current_room_info = room_info
+		player.stairs_target = null
 		contains_player = true
 		ward_off_angry_ghosts()
 

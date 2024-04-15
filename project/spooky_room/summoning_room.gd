@@ -11,17 +11,11 @@ func _ready():
 
 # NOTE: this could take a quality or something
 func _on_RoomArea2D_body_entered(body):
+	._on_RoomArea2D_body_entered(body)
 	if body.is_in_group(Constants.GROUP_PLAYER) and self.present_ghosts.empty():
 		var player = body as PlayerCharacter
 		if present_ghosts.empty():
 			player.enable_summoning()
-	._on_RoomArea2D_body_entered(body)
-
-func _on_RoomArea2D_body_exited(body):
-	if body.is_in_group(Constants.GROUP_PLAYER):
-		var player = body as PlayerCharacter
-		player.available_action = PlayerCharacter.PlayerActions.NONE
-	._on_RoomArea2D_body_exited(body)
 
 func _on_GhostActiveArea2D_area_entered(area):
 	if area.is_in_group(Constants.GROUP_GHOST):
