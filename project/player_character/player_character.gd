@@ -66,10 +66,10 @@ func _on_velocity_changed(velocity):
 		animation_player.play("run")
 
 func _on_summoning_completed(base_ghost):
-	character_tooltip.display_text("'W' to begin summoning")
 	stop_summoning()
 
 func stop_summoning():
+	character_tooltip.display_text("'W' to begin summoning")
 	summoning_power.is_enabled = false
 	movement.is_enabled = true
 	animation_player.play("idle")
