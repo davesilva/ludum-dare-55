@@ -129,7 +129,6 @@ func send_to_location(send_destination_info: SpookyRoomInfo, force_send=false):
 	yield(tween,"finished")
 	self.destination_info = null
 
-
 func is_happy():
 	return self.mood >= 0
 	

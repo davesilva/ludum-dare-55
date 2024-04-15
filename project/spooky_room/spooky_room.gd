@@ -112,7 +112,10 @@ func _process(delta):
 					sprite.texture = dirtierImage
 				ROOM_STATE.RUINED:
 					sprite.texture = ruinedImage
-					
+
+		if dirtinessToState(dirtiness) == ROOM_STATE.RUINED:
+			ward_off_angry_ghosts()
+
 	_update_debug_labels()
 	_sync_room_info()
 
