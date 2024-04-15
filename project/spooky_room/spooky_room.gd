@@ -167,6 +167,8 @@ func _on_RoomArea2D_body_exited(body):
 func _on_GhostActiveArea2D_area_entered(area):
 	if area.is_in_group(Constants.GROUP_GHOST):
 		var ghost = area as Ghost
+		if ghost.state == Ghost.STATE.TRAVELING and ghost.destination_info.global_position != self.global_position:
+			return
 		ghost.current_location_info = room_info
 		present_ghosts.append(ghost)
 		if ghost.is_angry() and contains_player:
