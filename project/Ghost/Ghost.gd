@@ -106,7 +106,7 @@ func _process_state(delta):
 
 
 func send_to_location(send_destination_info: SpookyRoomInfo):
-	if not self.selected:
+	if not self.selected or state == STATE.RAGING:
 		return
 
 	self.destination_info = send_destination_info
