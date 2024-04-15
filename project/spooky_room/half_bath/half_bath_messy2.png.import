@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bedroom_messy3.png-47e549d6ddd1a65ff52156e80b7240f7.stex"
+path="res://.import/half_bath_messy2.png-75529910f3aeeeee052ecf3c1ad17115.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://project/spooky_room/bedroom/bedroom_messy3.png"
-dest_files=[ "res://.import/bedroom_messy3.png-47e549d6ddd1a65ff52156e80b7240f7.stex" ]
+source_file="res://project/spooky_room/half_bath/half_bath_messy2.png"
+dest_files=[ "res://.import/half_bath_messy2.png-75529910f3aeeeee052ecf3c1ad17115.stex" ]
 
 [params]
 
