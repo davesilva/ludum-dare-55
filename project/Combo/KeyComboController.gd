@@ -15,8 +15,6 @@ var sequence_to_match = []
 var current_combo = []
 var sequence_length = 3
 var current_idx = 0
-signal combo_completed(combo)
-
 
 
 func _on_comboing_enabled_set(value: bool) -> void:
@@ -38,7 +36,7 @@ func end_combo(force_end=false) -> void:
 		combo_h_box_container.clear_keys()
 		sequence_to_match = generate_combo_sequence()
 		combo_h_box_container.add_keys(sequence_to_match)
-		emit_signal("combo_completed", current_combo)
+		GlobalSignals.emit_signal("combo_completed", current_combo)
 	elif force_end:
 		panel_container.hide	()
 	current_combo = []

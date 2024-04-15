@@ -20,32 +20,30 @@ onready var stairs_target = null
 
 func action_setter(new_value: int):
 	available_action = new_value
-	
-	summoning_power.is_enabled = available_action == PlayerActions.SUMMON
 
 
 func _ready():
 	movement.target = self
 	animation_player.play("idle")
+	GlobalSignals.connect("summoning_completed", self, "_on_summoning_completed")
 	add_to_group(Constants.GROUP_PLAYER)
 
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("primary_action"):
-		if available_action == PlayerActions.CLIMB_STAIRS:
-			GlobalSignals.emit_signal("player_takes_stairs", self.stairs_target, self)
-		elif available_action != PlayerActions.NONE:
-			_execute_action()
+		match available_action:
+			PlayerActions.CLIMB_STAIRS:
+				GlobalSignals.emit_signal("player_takes_stairs", self.stairs_target, self)
+			PlayerActions.SUMMON:
+				animation_player.play("summon")
+				sprite.offset.y = -12
+				summoning_power.is_enabled = true
+				movement.is_enabled = false
+			PlayerActions.STUDY:
+				print("study")
+			PlayerActions.COMMAND:
+				print("command")
 			
-
-func _execute_action():
-	match available_action:
-		PlayerActions.SUMMON:
-			print("summon")
-		PlayerActions.STUDY:
-			print("study")
-		PlayerActions.COMMAND:
-			print("command")
 
 func _on_velocity_changed(velocity):
 	if abs(velocity.x) < 1.0:
@@ -57,3 +55,9 @@ func _on_velocity_changed(velocity):
 	elif velocity.x < 1.0:
 		sprite.flip_h = true
 		animation_player.play("run")
+
+func _on_summoning_completed(base_ghost):
+	summoning_power.is_enabled = false
+	movement.is_enabled = true
+	animation_player.play("idle")
+	sprite.offset.y = 0

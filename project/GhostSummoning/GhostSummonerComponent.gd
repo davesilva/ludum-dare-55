@@ -11,11 +11,17 @@ var combo_dict = {
 	[KEY_LEFT, KEY_UP, KEY_DOWN, KEY_RIGHT]: base_ghost
 }
 
+func _ready():
+	GlobalSignals.connect("combo_completed", self, "_on_KeyComboController_combo_completed")
+
+
+
 func _update_enabled(new_value: bool):
 	is_enabled = new_value
 	key_combo_controller.comboing_enabled = new_value
 	if not new_value:
 		key_combo_controller.end_combo(true)
+
 
 
 func _on_KeyComboController_combo_completed(combo):
