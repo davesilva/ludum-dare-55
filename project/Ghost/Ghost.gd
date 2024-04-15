@@ -9,6 +9,8 @@ export (float) var chore_speed = 1.0
 export (float) var mood_change_per_second = 0.3 #is positive or negative depending on state
 export (int) var forced_moves_remaining = 3
 
+onready var on_ghost_ui = $OnGhostUI
+onready var pip_container = $OnGhostUI/HBoxContainer
 onready var run_away_feedback: FeedbackRunner = $RunAwayFeedback
 onready var scared_feedback: FeedbackRunner = $ScaredFeedback
 
@@ -53,13 +55,17 @@ func _process(delta):
 	
 func _evaluate_states(_delta):
 	if state != STATE.RAGING and is_angry():
-		#set_mood(-10)
 		state = STATE.RAGING
 		return
 	
 	if state != STATE.TRAVELING and destination_info != null:
 		state = STATE.TRAVELING
 		return
+		
+	if state == STATE.RAGING and not on_ghost_ui.visible:
+		on_ghost_ui.visible = true
+	elif state != STATE.RAGING and on_ghost_ui.visible:
+		on_ghost_ui.visible = false
 		
 	match state:
 		STATE.IDLE:
@@ -132,6 +138,7 @@ func send_to_location(send_destination_info: SpookyRoomInfo, force_send = false)
 		forced_moves_remaining -= 1
 		scared_feedback.execute_feedbacks()
 		yield(scared_feedback, "all_feedbacks_finished")
+		_set_pips(true, forced_moves_remaining)
 		
 	if not forced_moves_remaining:
 		run_away_feedback.execute_feedbacks()
@@ -191,6 +198,17 @@ func set_up_floating():
 	
 func _on_floating_wave_sequencer_new_value(value):
 	sprite.offset.y = value
+	
+
+func _set_pips(visible: bool, amount: int):
+	on_ghost_ui.visible = visible
+	var pips = pip_container.get_children()
+	for index in 3:
+		if amount > index:
+			pips[index].visible = true
+		else:
+			pips[index].visible = false
+		
 	
 	
 ###############

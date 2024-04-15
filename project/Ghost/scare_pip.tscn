@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/basic_2d_assets/polygons/circle/circle_regular.png" type="Texture" id=1]
+[ext_resource path="res://addons/basic_2d_assets/polygons/circle/circle_filled.png" type="Texture" id=2]
+
+[node name="PIP" type="Control"]
+margin_right = 20.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+margin_right = 20.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color( 0.235294, 0.0392157, 0.0392157, 1 )
+margin_right = 20.0
+margin_bottom = 20.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 5
