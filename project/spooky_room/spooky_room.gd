@@ -35,9 +35,10 @@ func ward_off_angry_ghosts() -> void:
 			var rooms: Array = get_tree().get_nodes_in_group(Constants.GROUP_ROOM)
 			rooms.shuffle()
 			for room in rooms:
-				if not self == room and room.roomHasTask and not dirtinessToState(room.dirtiness) == ROOM_STATE.RUINED:
+				if not self == room and room.roomHasTask and not dirtinessToState(room.dirtiness) == ROOM_STATE.RUINED and room.present_ghosts.empty():
 					ghost.send_to_location(room.room_info, true)
 					return
+			# TODO: This should probably hurt the ghost somehow
 			ghost.queue_free()
 
 # Converts the int to the state (real return type is ROOM_STATE)
@@ -94,7 +95,7 @@ func _process(delta):
 		elif dirtiness < 0:
 			dirtiness = 0
 			
-		if dirtiness < 0.5 and naughty_ghosts.empty():
+		if dirtiness < processSpeedInSeconds/100 and naughty_ghosts.empty():
 			dirtiness = 0
 			update_progress()
 
