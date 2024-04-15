@@ -477,7 +477,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Ghostdusters"
-run/main_scene="res://project/House/House.tscn"
+run/main_scene="res://project/application/application_initializer.tscn"
 config/icon="res://defaults/icon.png"
 
 [autoload]
