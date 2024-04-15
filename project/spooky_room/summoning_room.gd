@@ -37,7 +37,7 @@ func _on_GhostActiveArea2D_area_exited(area):
 	._on_GhostActiveArea2D_area_exited(area)
 
 func _on_summoning_completed(ghost_to_summon):
-	#$Poof.play()
+	$Poof.play()
 	var ghost = ghost_to_summon.instance()
 	get_tree().current_scene.add_child(ghost)
 	ghost.global_position = self.global_position
