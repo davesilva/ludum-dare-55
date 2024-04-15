@@ -30,7 +30,7 @@ position = Vector2( 960, 540 )
 texture = ExtResource( 17 )
 
 [node name="Study" parent="." instance=ExtResource( 1 )]
-position = Vector2( 550, 632 )
+position = Vector2( 572, 624 )
 cleanImage = ExtResource( 6 )
 dirtyImage = ExtResource( 8 )
 dirtierImage = ExtResource( 9 )
@@ -38,29 +38,29 @@ ruinedImage = ExtResource( 10 )
 roomWidth = 428
 
 [node name="Bathroom" parent="." instance=ExtResource( 1 )]
-position = Vector2( 913, 632 )
+position = Vector2( 858, 624 )
 dirtyImage = ExtResource( 12 )
 roomWidth = 298
 
 [node name="SummoningRoom" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1211, 632 )
+position = Vector2( 1144, 624 )
 roomWidth = 0
 roomHeight = 0
 roomHasTask = false
 
 [node name="DiningRoom" parent="." instance=ExtResource( 1 )]
-position = Vector2( 550, 850 )
+position = Vector2( 572, 832 )
 cleanImage = ExtResource( 4 )
 dirtyImage = ExtResource( 5 )
 dirtierImage = ExtResource( 11 )
 ruinedImage = ExtResource( 7 )
 
 [node name="StairsA" parent="." instance=ExtResource( 13 )]
-position = Vector2( 1435, 632 )
+position = Vector2( 1349, 624 )
 target_room_path = NodePath("../StairsB")
 
 [node name="StairsB" parent="." instance=ExtResource( 13 )]
-position = Vector2( 703, 850 )
+position = Vector2( 858, 832 )
 target_room_path = NodePath("../StairsA")
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 2 )]
