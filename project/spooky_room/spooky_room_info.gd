@@ -3,11 +3,14 @@ class_name SpookyRoomInfo
 
 signal can_command_ghost(state)
 
+enum ROOM_TYPE {SPOOKY, SUMMONING, STAIRS}
+
 var global_position = Vector2.ZERO
 var dirtiness = 0.0
 var contains_player = false setget _set_contains_player
 var helpful_ghost_count = 0 setget _set_helpful_ghost_count
 var naughty_ghost_count = 0 setget _set_naught_ghost_count
+var room_type = ROOM_TYPE.SPOOKY
 
 var _last_command_ghost_state = false
 

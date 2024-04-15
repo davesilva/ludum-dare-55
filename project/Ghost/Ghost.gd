@@ -43,30 +43,29 @@ func _ready():
 	]
 	self.happy_ghost_image = happy_ghost_images[randi() % 4]
 	sprite.texture = happy_ghost_image
-	
+
 	set_up_floating()
-	
+
 
 func _process(delta):
 	_evaluate_states(delta)
 	_process_state(delta)
 	_update_debug_labels()
-	
-	
+
 func _evaluate_states(_delta):
 	if state != STATE.RAGING and is_angry():
 		state = STATE.RAGING
 		return
-	
+
 	if state != STATE.TRAVELING and destination_info != null:
 		state = STATE.TRAVELING
 		return
-		
+
 	if state == STATE.RAGING and not on_ghost_ui.visible:
 		on_ghost_ui.visible = true
 	elif state != STATE.RAGING and on_ghost_ui.visible:
 		on_ghost_ui.visible = false
-		
+
 	match state:
 		STATE.IDLE:
 			_evaluate_idle()
@@ -78,12 +77,13 @@ func _evaluate_states(_delta):
 			_evaluate_raging()
 		STATE.PACIFIED:
 			_evaluate_pacified()
-		
 
 func _evaluate_idle():
 	if current_location_info and current_location_info.dirtiness > 0:
 		state = STATE.CLEANING
 	elif current_location_info and current_location_info.contains_player:
+		state = STATE.PACIFIED
+	elif current_location_info and current_location_info.room_type == SpookyRoomInfo.ROOM_TYPE.SUMMONING:
 		state = STATE.PACIFIED
 
 func _evaluate_pacified():
@@ -93,23 +93,21 @@ func _evaluate_pacified():
 func _evaluate_traveling():
 	if destination_info == null:
 		state = STATE.IDLE
-	
-		
+
 func _evaluate_cleaning():
 	if current_location_info and current_location_info.dirtiness <= 0:
 		state = STATE.IDLE
-	
+
 
 func _evaluate_raging():
 	if current_location_info and current_location_info.dirtiness > 0:
 		state = STATE.RAGING
 		return
-	
+
 	if is_happy():
 		set_mood(10)
 		state = STATE.IDLE
 		return
-		
 
 func _process_state(delta):
 	match state:
@@ -132,7 +130,7 @@ func send_to_location(send_destination_info: SpookyRoomInfo, force_send = false)
 	self.destination_info = send_destination_info
 	var distance = self.position.distance_to(destination_info.global_position)
 	var duration = distance / (self.movement_speed * 100)
-	
+
 	var scale_tween = create_tween()
 
 	if send_destination_info.global_position.x > self.global_position.x:
@@ -141,13 +139,13 @@ func send_to_location(send_destination_info: SpookyRoomInfo, force_send = false)
 	else:
 		#sprite.scale.x = 1
 		scale_tween.tween_property(self, "scale", Vector2(1,1), .2)
-		
+
 	if force_send:
 		forced_moves_remaining -= 1
 		scared_feedback.execute_feedbacks()
 		yield(scared_feedback, "all_feedbacks_finished")
 		_set_pips(true, forced_moves_remaining)
-		
+
 	if not forced_moves_remaining:
 		run_away_feedback.execute_feedbacks()
 		yield(run_away_feedback, "all_feedbacks_finished")
@@ -165,50 +163,44 @@ func send_to_location(send_destination_info: SpookyRoomInfo, force_send = false)
 		[$BooA, $BooB][randi() % 2].play()
 		yield(tween,"finished")
 		self.destination_info = null
-		
+
 
 func is_happy():
 	return self.mood >= 0
-	
+
 func is_angry():
 	return self.mood < 0
-	
-	
+
 func update_mood(added_value):
 	set_mood(mood + added_value)
-	
-	
+
 func set_mood(mood_value):
 	mood = clamp(mood_value, -1000, 100)
 	update_sprites_from_mood()
-	
 
 func update_sprites_from_mood():
-	if mood < 25 and mood >= -40:
+	if mood < 25 and mood >= 0:
 		sprite.texture = angry_ghost_images[0]
-	elif mood < -40 and mood >= -80:
+	elif mood < 0 and mood >= -80:
 		sprite.texture = angry_ghost_images[1]
 	elif mood < -80:
 		sprite.texture = angry_ghost_images[2]
 	else:
 		sprite.texture = happy_ghost_image
-	
+
 
 func _on_selected():
 	self.selected = true
 
 func _on_unselected():
 	self.selected = false
-	
 
 func set_up_floating():
 	$FloatingWaveSequencer.amplitude += Random.randi_range(-1, 4)
 	$FloatingWaveSequencer.period += Random.randf_range(0,2)
 
-	
 func _on_floating_wave_sequencer_new_value(value):
 	sprite.offset.y = value
-	
 
 func _set_pips(visible: bool, amount: int):
 	on_ghost_ui.visible = visible
@@ -218,9 +210,7 @@ func _set_pips(visible: bool, amount: int):
 			pips[index].visible = true
 		else:
 			pips[index].visible = false
-		
-	
-	
+
 ###############
 #### DEBUG ####
 ###############
@@ -243,5 +233,5 @@ func _string_for_state(given_state: int) -> String:
 			return "CLEAN"
 		STATE.RAGING:
 			return "ANGRY"
-			
+
 	return "UNKNOWN"

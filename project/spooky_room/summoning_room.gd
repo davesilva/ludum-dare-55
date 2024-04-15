@@ -5,9 +5,10 @@ export var idle_image: Texture
 export var active_image: Texture
 
 func _ready():
+	._ready()
 	GlobalSignals.connect("summoning_completed", self, "_on_summoning_completed")
 	GlobalSignals.connect("summoning_started", self, "_on_summoning_started")
-	._ready()
+	self.room_info.room_type = SpookyRoomInfo.ROOM_TYPE.SUMMONING
 
 # NOTE: this could take a quality or something
 func _on_RoomArea2D_body_entered(body):

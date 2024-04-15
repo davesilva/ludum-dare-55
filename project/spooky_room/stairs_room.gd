@@ -12,6 +12,7 @@ onready var white_flash = $WhiteFlash
 func _ready():
 	._ready()
 	GlobalSignals.connect("player_takes_stairs", self, "_on_player_takes_stairs")
+	self.room_info.room_type = SpookyRoomInfo.ROOM_TYPE.STAIRS
 	var other_room = get_node(target_room_path) as StairsRoom
 	other_room.connect("stairs_glow", self, "_on_stairs_glow")
 	other_room.connect("stairs_unglow", self, "_on_stairs_unglow")
