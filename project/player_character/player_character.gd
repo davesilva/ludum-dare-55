@@ -9,6 +9,12 @@ enum PlayerActions {
 	CLIMB_STAIRS
 }
 
+#We don't currently care about movement or not, stairs or not, etc
+enum PlayerState {
+	NORMAL,
+	SUMMONING
+}
+
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var sprite: Sprite = $Sprite
 onready var movement := $Movement as MovementComponent2D
@@ -18,6 +24,7 @@ onready var current_room_info = SpookyRoomInfo
 onready var ghost_director = $GhostDirector
 onready var stairs_target = null setget _on_stairs_target_set
 onready var character_tooltip = $CharacterTooltip as CharacterTooltip
+onready var state = PlayerState.NORMAL
 
 func action_setter(new_value: int):
 	available_action = new_value
@@ -41,7 +48,7 @@ func _process(_delta):
 			PlayerActions.CLIMB_STAIRS:
 				GlobalSignals.emit_signal("player_takes_stairs", self.stairs_target, self)
 			PlayerActions.SUMMON:
-				if summoning_power.is_enabled == false:
+				if self.state != PlayerState.SUMMONING:
 					start_summoning()
 				else:
 					cancel_summoning()
@@ -53,7 +60,9 @@ func _process(_delta):
 			match available_action:
 				PlayerActions.CLIMB_STAIRS:
 					GlobalSignals.emit_signal("player_takes_stairs", self.stairs_target, self)
-
+	elif Input.is_action_just_released("standard_move_left") or Input.is_action_just_released("standard_move_right"):
+		if state == PlayerState.NORMAL:
+			movement.is_enabled = true
 
 
 func _on_velocity_changed(velocity):
@@ -69,10 +78,12 @@ func _on_velocity_changed(velocity):
 
 func cancel_summoning():
 	character_tooltip.display_text(Constants.SUMMON_TOOLTIP)
-	summoning_power.is_enabled = false
-	movement.is_enabled = true
 	animation_player.play("idle")
 	sprite.offset.y = 0
+	summoning_power.is_enabled = false
+	state = PlayerState.NORMAL
+	if not (Input.is_action_pressed("standard_move_left") or Input.is_action_pressed("standard_move_right")):
+		movement.is_enabled = true
 	GlobalSignals.emit_signal("summoning_completed", false, null)
 
 func disable_summoning():
@@ -89,6 +100,7 @@ func start_summoning():
 	character_tooltip.clear_text()
 	animation_player.play("summon")
 	sprite.offset.y = -12
+	self.state = PlayerState.SUMMONING
 	summoning_power.is_enabled = true
 	movement.is_enabled = false
 	GlobalSignals.emit_signal("summoning_started")
