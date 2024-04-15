@@ -161,7 +161,10 @@ func _on_GhostActiveArea2D_area_entered(area):
 	if area.is_in_group(Constants.GROUP_GHOST):
 		var ghost = area as Ghost
 		ghost.current_location_info = room_info
-		present_ghosts.append(ghost)
+		if ghost.is_angry() and contains_player:
+			ward_off_angry_ghosts()
+		else:
+			present_ghosts.append(ghost)
 		
 
 
