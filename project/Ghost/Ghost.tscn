@@ -33,6 +33,7 @@ mood_change_per_second = 5.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+offset = Vector2( 10, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
