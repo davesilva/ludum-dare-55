@@ -35,7 +35,7 @@ position = Vector2( 960, 540 )
 texture = ExtResource( 17 )
 
 [node name="Study" parent="." instance=ExtResource( 1 )]
-position = Vector2( 468, 666 )
+position = Vector2( 546, 666 )
 cleanImage = ExtResource( 6 )
 dirtyImage = ExtResource( 8 )
 dirtierImage = ExtResource( 9 )
@@ -43,61 +43,61 @@ ruinedImage = ExtResource( 10 )
 roomWidth = 428
 
 [node name="Bathroom" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1326, 888 )
+position = Vector2( 1404, 888 )
 dirtyImage = ExtResource( 12 )
 roomWidth = 298
 
 [node name="SummoningRoom" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1014, 666 )
+position = Vector2( 1092, 666 )
 roomWidth = 0
 roomHeight = 0
 
 [node name="DiningRoom" parent="." instance=ExtResource( 1 )]
-position = Vector2( 468, 888 )
+position = Vector2( 546, 888 )
 cleanImage = ExtResource( 4 )
 dirtyImage = ExtResource( 5 )
 dirtierImage = ExtResource( 11 )
 ruinedImage = ExtResource( 7 )
 
 [node name="Bedroom" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1014, 888 )
+position = Vector2( 1092, 888 )
 cleanImage = ExtResource( 20 )
 dirtyImage = ExtResource( 19 )
 dirtierImage = ExtResource( 21 )
 ruinedImage = ExtResource( 18 )
 
 [node name="Stairs1A" parent="." instance=ExtResource( 13 )]
-position = Vector2( 780, 888 )
+position = Vector2( 858, 888 )
 target_room_path = NodePath("../Stairs1B")
 
 [node name="Stairs1B" parent="." instance=ExtResource( 13 )]
-position = Vector2( 780, 666 )
+position = Vector2( 858, 666 )
 cleanImage = ExtResource( 22 )
 target_room_path = NodePath("../Stairs1A")
 
 [node name="Bedroom2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1014, 444 )
+position = Vector2( 1092, 444 )
 cleanImage = ExtResource( 20 )
 dirtyImage = ExtResource( 19 )
 dirtierImage = ExtResource( 21 )
 ruinedImage = ExtResource( 18 )
 
 [node name="Bathroom2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 702, 444 )
+position = Vector2( 780, 444 )
 dirtyImage = ExtResource( 12 )
 roomWidth = 298
 
 [node name="Stairs2A" parent="." instance=ExtResource( 13 )]
-position = Vector2( 1248, 666 )
+position = Vector2( 1326, 666 )
 target_room_path = NodePath("../Stairs2B")
 
 [node name="Stairs2B" parent="." instance=ExtResource( 13 )]
-position = Vector2( 1248, 444 )
+position = Vector2( 1326, 444 )
 cleanImage = ExtResource( 22 )
 target_room_path = NodePath("../Stairs2A")
 
 [node name="PlayerCharacterRoot" parent="." instance=ExtResource( 2 )]
-position = Vector2( 523, 651 )
+position = Vector2( 532, 691 )
 
 [node name="BG" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
