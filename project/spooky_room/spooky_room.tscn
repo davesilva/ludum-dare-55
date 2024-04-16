@@ -34,6 +34,7 @@ dirtierImage = ExtResource( 5 )
 ruinedImage = ExtResource( 1 )
 roomWidth = 285
 roomHeight = 208
+processSpeedInSeconds = 10
 
 [node name="RoomArea2D" type="Area2D" parent="."]
 

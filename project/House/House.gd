@@ -26,5 +26,8 @@ func _on_spawn_ghost():
 			ghost.position = Vector2(-100, 540)
 			add_child(ghost)
 			ghost.send_to_location(room.room_info, false)
+			ghost_spawn_timer.wait_time = ghost_spawn_timer.wait_time - 5
+			if ghost_spawn_timer.wait_time < 1:
+				ghost_spawn_timer.wait_time = 1
 			return
 	# If we don't have a valid place for it, don't spawn the ghost
