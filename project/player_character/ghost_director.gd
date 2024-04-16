@@ -11,7 +11,7 @@ func _on_room_clicked(clicked_room: SpookyRoom) -> void:
 	for room in get_tree().get_nodes_in_group(Constants.GROUP_ROOM):
 		room = room as SpookyRoom
 		if room.contains_player:
-			if not clicked_room.roomHasTask:
+			if (not clicked_room.roomHasTask) and (not clicked_room.roomHasTask and not clicked_room.room_info.room_type == SpookyRoomInfo.ROOM_TYPE.SUMMONING):
 				return
 			if clicked_room.present_ghosts.empty():
 				for ghost in room.present_ghosts:

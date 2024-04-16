@@ -144,16 +144,7 @@ func send_to_location(send_destination_info: SpookyRoomInfo, force_send = false)
 		on_ghost_ui.set_pips(forced_moves_remaining)
 		
 	if not forced_moves_remaining:
-		run_away_feedback.execute_feedbacks()
-		yield(run_away_feedback, "all_feedbacks_finished")
-		var unit_vector = Random.random_unit_vector()
-		var new_position = position + (unit_vector * 10000)
-		look_at(new_position)
-		var tween = create_tween()
-		tween.tween_property(self, "position", new_position, 5)
-		$RunAway.play()
-		yield(tween,"finished")
-		queue_free()
+		run_away()
 	else:
 		var tween = create_tween()
 		tween.tween_property(self, "position", destination_info.global_position, duration)
@@ -185,7 +176,18 @@ func update_sprites_from_mood():
 	else:
 		sprite.texture = happy_ghost_image
 
-
+func run_away():
+	run_away_feedback.execute_feedbacks()
+	yield(run_away_feedback, "all_feedbacks_finished")
+	var unit_vector = Random.random_unit_vector()
+	var new_position = position + (unit_vector * 10000)
+	look_at(new_position)
+	var tween = create_tween()
+	tween.tween_property(self, "position", new_position, 5)
+	$RunAway.play()
+	yield(tween,"finished")
+	queue_free()
+	
 func _on_selected():
 	self.selected = true
 
@@ -203,8 +205,14 @@ func _on_floating_wave_sequencer_new_value(value):
 func current_room_has_been_cleaned():
 	cleaned_rooms += 1
 	on_ghost_ui.set_stars_display(cleaned_rooms)
-	
-	
+
+func on_enter_summoning_room():
+	if cleaned_rooms > 0:
+		GlobalSignals.emit_signal("score_incremented", cleaned_rooms)
+		cleaned_rooms = 0
+		on_ghost_ui.set_stars_display(cleaned_rooms)
+		run_away()
+
 ###############
 #### DEBUG ####
 ###############

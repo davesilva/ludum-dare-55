@@ -12,3 +12,5 @@ signal combo_completed(combo)
 # Pushing information to the UI
 signal display_keys(keys)
 signal display_prompt(text)
+signal score_incremented(amount)
+signal score_updated(value)
