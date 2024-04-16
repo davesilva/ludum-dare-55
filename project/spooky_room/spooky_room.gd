@@ -97,12 +97,14 @@ func _process(delta):
 			update_progress()
 
 		# If dirtiness changes, update graphics and progress
-		if dirtiness != prev_dirtiness:
+		if dirtiness != prev_dirtiness:				
 			update_progress()
 			_set_room_image()
 			
 			if dirtiness == 0:
-				$RoomClean.play()
+				#$RoomClean.play()
+				pass
+			
 
 			if dirtinessToState(dirtiness) == ROOM_STATE.RUINED:
 				disable_room()
