@@ -76,7 +76,8 @@ func _process(delta):
 		var helpful_ghosts = _get_helpful_ghosts()
 		var naughty_ghosts = _get_angry_ghosts()
 		for ghost in helpful_ghosts:
-			dirtiness -= ghost.chore_speed * delta
+			if dirtiness > 0:
+				dirtiness -= ghost.chore_speed * delta
 		for ghost in naughty_ghosts:
 			dirtiness += ghost.chore_speed * delta
 
@@ -84,13 +85,6 @@ func _process(delta):
 			dirtiness = processSpeedInSeconds
 		elif dirtiness < 0:
 			dirtiness = 0
-			
-			if prev_dirtiness == 0:
-				return
-			
-			for ghost in helpful_ghosts:
-				ghost.current_room_has_been_cleaned()
-			
 			
 		if dirtiness < processSpeedInSeconds/100.0 and naughty_ghosts.empty():
 			dirtiness = 0
@@ -102,9 +96,8 @@ func _process(delta):
 			_set_room_image()
 			
 			if dirtiness == 0:
-				#$RoomClean.play()
-				pass
-			
+				for ghost in helpful_ghosts:
+					ghost.current_room_has_been_cleaned()
 
 			if dirtinessToState(dirtiness) == ROOM_STATE.RUINED:
 				disable_room()
