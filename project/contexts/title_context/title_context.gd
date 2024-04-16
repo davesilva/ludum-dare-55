@@ -11,8 +11,10 @@ func context_id_string() -> String:
 	
 
 func _ready():
+	$IntroBG.play()
 	PresentationServices.ui_service().set_presentation_root(ui_root)
 
 
 func _on_TitleContextUI_request_context_change(context_id):
+	$IntroBG.stop()
 	change_context(context_id)
