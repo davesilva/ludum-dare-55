@@ -109,6 +109,9 @@ func _process(delta):
 			_set_room_image()
 			
 			if dirtiness == 0:
+				if not helpful_ghosts.empty():
+					$RoomClean.play()
+				
 				for ghost in helpful_ghosts:
 					ghost.current_room_has_been_cleaned()
 
