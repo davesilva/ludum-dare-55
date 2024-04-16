@@ -4,7 +4,7 @@ class_name GameContext
 const CONTEXT_ID = "context.game"
 
 onready var world_root = $WorldRoot
-onready var ui_root = $UIRoot
+onready var ui_root = $UIRoot/CanvasLayer/GameContextUI
 
 func context_id_string() -> String:
 	return CONTEXT_ID
