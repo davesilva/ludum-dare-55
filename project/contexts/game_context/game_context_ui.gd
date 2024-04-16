@@ -23,6 +23,7 @@ func _on_game_start():
 	
 
 func _on_game_end():
+	game_over_root.set_score(Stats.score)
 	show_game_over()
 	
 

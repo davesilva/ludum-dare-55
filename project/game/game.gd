@@ -16,6 +16,7 @@ func _process(_delta):
 	
 	
 func start_game():
+	Stats.score = 0
 	is_game_active = true
 	
 
