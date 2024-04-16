@@ -248,5 +248,5 @@ position = Vector2( 1847, 863 )
 shape = SubResource( 1 )
 
 [node name="GhostSpawnTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 15.0
 autostart = true
