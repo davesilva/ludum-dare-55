@@ -24,6 +24,10 @@ jobs:
         run: |
           mkdir -v -p build
           godot --no-window --verbose --export "HTML5" build/index.html
+      - name: Edit JS to remove checks for serviceWorker
+        run: |
+          cd build
+          sed -i "s/[\"']serviceWorker[\"'] *in *navigator/false/g" index.js
       - name: Create ZIP
         run: |
           cd build
