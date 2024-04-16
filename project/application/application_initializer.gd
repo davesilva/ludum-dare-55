@@ -5,9 +5,10 @@ export (PackedScene) var title_context_scene
 export (PackedScene) var game_context_scene
 
 onready var context_root = $ContextRoot
+onready var game = $Game
 
 func _ready():
-	Application.initialize_game()
+	Application.set_game(game)
 	
 	var context_scene_dictionary = { 
 		TitleContext.CONTEXT_ID : title_context_scene, 

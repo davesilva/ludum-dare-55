@@ -3,12 +3,10 @@ extends Node
 # An autoload that holds onto the Game, Session and Round
 # as well as other relevant application-level information
 
-var game_instance: Game
+var game_instance = null
 
-func initialize_game():
-	game_instance = Game.new()
-	add_child(game_instance)
-	
+func set_game(game: Game):
+	game_instance = game
 
 func game() -> Game:
 	return game_instance

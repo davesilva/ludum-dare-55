@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://project/contexts/game_context/game_context_ui.gd" type="Script" id=1]
 [ext_resource path="res://addons/fonts/nk57_monospace.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://project/Combo/ComboHboxContainer.gd" type="Script" id=3]
+[ext_resource path="res://project/game/game_over_root.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 45
@@ -100,3 +101,5 @@ text = "Score: 0"
 align = 1
 valign = 1
 autowrap = true
+
+[node name="GameOverRoot" parent="." instance=ExtResource( 4 )]

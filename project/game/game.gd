@@ -1,13 +1,23 @@
 extends Node
 class_name Game
 
+var world_root: Node2D = null
+var is_game_active = false
+
 func _process(_delta):
+	if not is_game_active:
+		return
+	
 	if player_has_lost():
-		GlobalSignals.emit_signal("display_prompt", "YOU LOSE")
+		run_player_lost_sequence()
 		return
 		
 	round_tick()
-
+	
+	
+func start_game():
+	is_game_active = true
+	
 
 func player_has_won() -> bool:
 	return false
@@ -22,6 +32,12 @@ func round_tick():
 	# like potentially spawning things
 	# or entering a new phase of play
 	pass
+	
+	
+func run_player_lost_sequence():
+	is_game_active = false
+	GlobalSignals.emit_signal("display_prompt", "YOU LOSE")
+	GlobalSignals.emit_signal("game_end")
 	
 
 func remaining_salvagable_rooms() -> int:

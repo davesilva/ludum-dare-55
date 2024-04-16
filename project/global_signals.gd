@@ -1,6 +1,13 @@
 extends Node
 # GlobalSignals
 
+# Game lifecycle signals
+signal game_start()
+signal game_end()
+signal game_restart()
+
+
+# In game signals
 signal room_clicked(room)
 signal summoning_completed(success, ghost_to_summon) # did we succeed, if so ghost to summon
 signal summoning_started()

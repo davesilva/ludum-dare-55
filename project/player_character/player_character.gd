@@ -41,11 +41,27 @@ func _set_room_info(room_info: SpookyRoomInfo):
 
 
 func _ready():
+	GlobalSignals.connect("game_start", self, "_on_game_start")
+	GlobalSignals.connect("game_end", self, "_on_game_end")
+	GlobalSignals.connect("game_restart", self, "_on_game_restart")
+	
 	movement.target = self
 	animation_player.play("idle")
 	GlobalSignals.connect("player_enable_summoning", self, "enable_summoning")
 	GlobalSignals.connect("player_disable_summoning", self, "disable_summoning")
 	add_to_group(Constants.GROUP_PLAYER)
+
+
+func _on_game_start():
+	movement.is_enabled = true
+	
+
+func _on_game_end():
+	movement.is_enabled = false
+	
+	
+func _on_game_restart():
+	_on_game_start()
 
 	
 func _process(_delta):
