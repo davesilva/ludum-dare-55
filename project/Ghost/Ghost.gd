@@ -207,11 +207,10 @@ func current_room_has_been_cleaned():
 	on_ghost_ui.set_stars_display(cleaned_rooms)
 
 func on_enter_summoning_room():
-	if cleaned_rooms > 0:
-		GlobalSignals.emit_signal("score_incremented", cleaned_rooms)
-		cleaned_rooms = 0
-		on_ghost_ui.set_stars_display(cleaned_rooms)
-		run_away()
+	GlobalSignals.emit_signal("score_incremented", 1)
+	cleaned_rooms = 0
+	on_ghost_ui.set_stars_display(cleaned_rooms)
+	run_away()
 
 ###############
 #### DEBUG ####

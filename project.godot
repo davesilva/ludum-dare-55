@@ -487,6 +487,7 @@ PresentationServices="*res://addons/presentation/presentation_services.tscn"
 Constants="*res://project/autoloads/Constants.tscn"
 GlobalSignals="*res://project/global_signals.gd"
 Application="*res://project/application/application.gd"
+Stats="*res://project/autoloads/Stats.tscn"
 
 [debug]
 

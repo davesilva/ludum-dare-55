@@ -22,6 +22,8 @@ func _on_GhostActiveArea2D_area_entered(area):
 	if area.is_in_group(Constants.GROUP_GHOST):
 		if contains_player:
 			GlobalSignals.emit_signal("player_disable_summoning")
+		var ghost = area as Ghost
+		ghost.on_enter_summoning_room()
 	._on_GhostActiveArea2D_area_entered(area)
 
 func _on_GhostActiveArea2D_area_exited(area):
